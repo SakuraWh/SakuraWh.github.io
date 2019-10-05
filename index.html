@@ -47,7 +47,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/imgs/head.jpeg" class="js-avatar">
+			<img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/第一篇博客/head.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">SakuraWh</a></h1>
@@ -111,7 +111,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/imgs/head.jpeg" class="js-avatar">
+				<img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/第一篇博客/head.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">SakuraWh</h1>
@@ -170,6 +170,190 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-创建腾讯图床用于解决Hexo框架下md文件图片显示问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/05/创建腾讯图床用于解决Hexo框架下md文件图片显示问题/">创建腾讯图床用于解决Hexo框架下md文件图片显示问题</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/05/创建腾讯图床用于解决Hexo框架下md文件图片显示问题/" class="archive-article-date">
+  	<time datetime="2019-10-04T17:01:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这两天本来想更新Spring学习的博客，昨晚在写完IOC的博客之后，Markdown文件下图片的引用出现了问题，找了挺多解决方案，差点给我整自闭了，记录一下。</p>
+<p>传统的MarkDown文件下引用图片的方式是</p>
+<blockquote>
+<p>！[名称]{本地连接}</p>
+</blockquote>
+<p>但是少量图片还好说，图片一多，就不好管理了，昨天更新博客时突然不能插入图片了，所以我查了挺多方法，最后决定通过搭建图床的方式来进行图片储存。</p>
+<p>图床就是一个放在网上储存图片的东西。</p>
+<h2 id="1-注册腾讯云COS"><a href="#1-注册腾讯云COS" class="headerlink" title="1.注册腾讯云COS"></a>1.注册腾讯云COS</h2><p><a href="https://console.cloud.tencent.com/" target="_blank" rel="noopener">下载链接</a></p>
+<p>然后直接用自己QQ号完成注册好了，这个好像是先免费半年，之后就要收费了，虽然很想白嫖，但是这样起码省心点，毕竟腾讯，大树底下好乘凉，也许半年后我就能找到工作了，给它续费。</p>
+<h2 id="2-下载COSBrower"><a href="#2-下载COSBrower" class="headerlink" title="2.下载COSBrower"></a>2.下载COSBrower</h2><p>注册完毕后下载COSBrower，就是上传图片的桌面应用。</p>
+<p><a href="https://cloud.tencent.com/developer/article/1181547" target="_blank" rel="noopener">下载链接</a></p>
+<p>下载后安装，登录时候的id和密码在腾讯云上的</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/%E5%88%9B%E5%BB%BA%E8%85%BE%E8%AE%AF%E5%9B%BE%E5%BA%8A%E7%94%A8%E4%BA%8E%E8%A7%A3%E5%86%B3Hexo%E6%A1%86%E6%9E%B6%E4%B8%8Bmd%E6%96%87%E4%BB%B6%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/1.PNG" alt></p>
+<h2 id="3-配置使用"><a href="#3-配置使用" class="headerlink" title="3.配置使用"></a>3.配置使用</h2><p>然后就拖拽创建对应目录，完成好之后，再根据大概这个格式</p>
+<pre><code>https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/创建腾讯图床用于解决Hexo框架下md文件图片显示问题/1.PNG</code></pre><p>这个样子的链接放在md文件中，就可以实现图床链接了。</p>
+<h2 id="4-多说一句"><a href="#4-多说一句" class="headerlink" title="4.多说一句"></a>4.多说一句</h2><p>半夜一点了，该睡觉了，博客写的有点敷衍，详细步骤就那样，摸索摸索，或者问我也行就这样8。</p>
+<p>放假了在家有些懈怠学习，果然学校才是最好的，希望我能认真学习，有效利用放假时间，加油！</p>
+<p>晚安。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/05/创建腾讯图床用于解决Hexo框架下md文件图片显示问题/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring学习笔记：IOC&amp;DI" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/03/Spring学习笔记：IOC&DI/">Spring学习笔记：IOC&amp;DI</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/03/Spring学习笔记：IOC&DI/" class="archive-article-date">
+  	<time datetime="2019-10-03T08:42:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>要了解Spring框架，我们首先要了解其基本思想IOC&amp;DI</p>
+<h2 id="什么是IOC-amp-DI？"><a href="#什么是IOC-amp-DI？" class="headerlink" title="什么是IOC &amp; DI？"></a>什么是IOC &amp; DI？</h2><p>根据百度百科给出的定义：</p>
+<blockquote>
+<p>控制反转（Inversion of Control，缩写为IoC），是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。其中最常见的方式叫做依赖注入（Dependency Injection，简称DI）。</p>
+</blockquote>
+<p>当我们完成一个项目时，不同的模块与类之间相互合作，互相依赖，这时当我们需要单独使用其中一个类时，由于过高的耦合性，导致模块的功能无法正常实现，出现各种无法预知的问题。</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/1.PNG" alt></p>
+<p>IOC是一种设计思想（原则），观点大致是借助“第三方”实现依赖关系之间的解耦，如下图：</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/2.PNG" alt></p>
+<p>图中“第三方”就是IOC容器，让A、B、C、D不再具有耦合关系，全部的控制权都在“第三方”IOC容器，如果去掉IOC容器，对象与对象之间就会失去联系。</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/3.PNG" alt></p>
+<p>此时，对于每个单独的对象来说，已经没有了耦合关系，当实现A时就无需考虑B、C、D了，而为了在系统中使用B对象，传统方式是由A对象主动地创建B对象获取直接控制；而对于IOC来说，就是通过IOC容器来创建B对象，再将B对象注入到A对象需要的地方。</p>
+<p>这样A依赖B的过程就变成了<strong>被动</strong>的方式，这就叫“<strong>控制反转</strong>”。</p>
+<p>依赖注入DI是反转控制的另一种表达方式，指的是组件以预先定义好的方式（<strong>setter方法</strong>）来接受来自容器的资源注入。</p>
+<hr>
+<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/4.PNG" alt></p>
+<p>项目通过配置xml文件中的对象属性，在执行程序时由IOC容器的将其注入</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/5.PNG" alt></p>
+<p>具体就是通过IOC容器，根据xml文件中提供的配置，将对象定义好后，再通过预设好的set方法将对应的属性值进行注入，这样就实现了对象无需再被主动创建，而是由IOC容器创建完成后，用到的时候再从IOC容器中接收即可。</p>
+<p>文章参考：<a href="https://blog.csdn.net/ivan820819/article/details/79744797" target="_blank" rel="noopener">https://blog.csdn.net/ivan820819/article/details/79744797</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/03/Spring学习笔记：IOC&DI/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-idea配置spring框架并实现HelloWorld" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -190,13 +374,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-创建spring项目"><a href="#1-创建spring项目" class="headerlink" title="1.创建spring项目"></a>1.创建spring项目</h2><p><img src="imgs/spring1/creat.PNG" alt></p>
+        <h2 id="1-创建spring项目"><a href="#1-创建spring项目" class="headerlink" title="1.创建spring项目"></a>1.创建spring项目</h2><p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/idea%E9%85%8D%E7%BD%AEspring%E6%A1%86%E6%9E%B6%E5%B9%B6%E5%AE%9E%E7%8E%B0HelloWorld/creat.PNG" alt></p>
 <p>勾选springconfig.xml会默认创建对应的xml文件</p>
-<p><img src="imgs/spring1/setprojectname.PNG" alt></p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/idea%E9%85%8D%E7%BD%AEspring%E6%A1%86%E6%9E%B6%E5%B9%B6%E5%AE%9E%E7%8E%B0HelloWorld/setprojectname.PNG" alt></p>
 <p>实现spring项目的创建</p>
 <p>idea会自动下载对应的jar包</p>
 <p>项目目录如下：</p>
-<p><img src="imgs/spring1/link.PNG" alt></p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/idea%E9%85%8D%E7%BD%AEspring%E6%A1%86%E6%9E%B6%E5%B9%B6%E5%AE%9E%E7%8E%B0HelloWorld/link.PNG" alt></p>
 <hr>
 <h2 id="2-传统方法实现HelloWorld打印"><a href="#2-传统方法实现HelloWorld打印" class="headerlink" title="2.传统方法实现HelloWorld打印"></a>2.传统方法实现HelloWorld打印</h2><p>在package下创建HelloWorld类</p>
 <pre><code>package com.sakura.spring.beans.Helloworld;
@@ -236,7 +420,7 @@ helloWorld.sayHello();</code></pre><p>打印出结果</p>
 ApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
 HelloWorld helloWorld1=(HelloWorld)ctx.getBean(&quot;helloWorld&quot;);
 helloWorld1.sayHello();</code></pre><p>输出结果包含日志及对应结果</p>
-<p><img src="imgs/spring1/out.PNG" alt></p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/idea%E9%85%8D%E7%BD%AEspring%E6%A1%86%E6%9E%B6%E5%B9%B6%E5%AE%9E%E7%8E%B0HelloWorld/out.PNG" alt></p>
 <hr>
 <h2 id="4-验证执行顺序"><a href="#4-验证执行顺序" class="headerlink" title="4.验证执行顺序"></a>4.验证执行顺序</h2><pre><code>public void setName(String name) {
     System.out.println(&quot;调用set方法&quot;);
@@ -250,7 +434,7 @@ public void sayHello(){
 public HelloWorld(){
     System.out.println(&quot;创建hello world类&quot;);
 }</code></pre><p>写构造方法和set方法使其输出，再将主函数中获取Bean实例和调用对象方法注释掉，输出验证：</p>
-<p><img src="imgs/spring1/out2.PNG" alt></p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/idea%E9%85%8D%E7%BD%AEspring%E6%A1%86%E6%9E%B6%E5%B9%B6%E5%AE%9E%E7%8E%B0HelloWorld/out2.PNG" alt></p>
 <p>可以得到结论：</p>
 <p><strong>新建applicationcontext上下文对象是初始化所有的变量，并且调用set方法</strong></p>
 <p>且在applicationContext.xm文件下的bean中Prooerty的name属性，仅仅是相关对应的set方法，<strong>与变量无关</strong>。</p>
@@ -328,7 +512,7 @@ public HelloWorld(){
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Maven工具的安装"><a href="#Maven工具的安装" class="headerlink" title="Maven工具的安装"></a>Maven工具的安装</h1><h2 id="0-下载"><a href="#0-下载" class="headerlink" title="0.下载"></a>0.下载</h2><p><a href="https://maven.apache.org/download.cgi" target="_blank" rel="noopener">安装地址</a></p>
-<p><img src="imgs/installMaven.png" alt></p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Maven%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85/installMaven.png" alt></p>
 <h2 id="1-配置环境"><a href="#1-配置环境" class="headerlink" title="1.配置环境"></a>1.配置环境</h2><p>在环境变量Path中配置<br>E:\Maven\apache-maven-3.6.2-bin(2)\apache-maven-3.6.2\bin\</p>
 <p>配置完成后，打开cmd输入</p>
 <pre><code>mvn -v</code></pre><p>将会显示</p>
@@ -429,7 +613,7 @@ OS name: &quot;windows 10&quot;, version: &quot;10.0&quot;, arch: &quot;amd64&qu
 <p><strong>搭桥到github：</strong></p>
 <p>首先创建一个仓库repo，名称是Name.github.io，其中name是你的github名称（重要）</p>
 <hr>
-<p><strong>配置SSH key：</strong><br><img src="imgs/creatSSHkey.jpeg" alt><br>在以上工作都完成的情况下，更改myBlog文件夹下</p>
+<p><strong>配置SSH key：</strong><br><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Hexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/creatSSHkey.jpeg" alt><br>在以上工作都完成的情况下，更改myBlog文件夹下</p>
 <p>_config.yml文件</p>
 <blockquote>
 <p>deploy:</p>
@@ -518,7 +702,7 @@ OS name: &quot;windows 10&quot;, version: &quot;10.0&quot;, arch: &quot;amd64&qu
       
         <h1 id="第一次写个人博客"><a href="#第一次写个人博客" class="headerlink" title="第一次写个人博客"></a>第一次写个人博客</h1><p>通过一晚上加一早上的时间，完成了个人博客的搭建，目前很多功能不熟悉</p>
 <p>之后会更新一篇如何<strong>搭建个人博客</strong>教程</p>
-<p>博客是为了<strong>记录</strong>自己学习经历<br><img src="imgs/head.jpeg" alt></p>
+<p>博客是为了<strong>记录</strong>自己学习经历<br><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/head.jpeg" alt></p>
 
       
 
@@ -673,11 +857,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
             
             <div class="clearfix"></div>

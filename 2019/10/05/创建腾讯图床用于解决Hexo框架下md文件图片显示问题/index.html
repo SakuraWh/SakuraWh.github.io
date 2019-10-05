@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 教程 | Welcome to SakuraWh Blog</title>
+  <title>创建腾讯图床用于解决Hexo框架下md文件图片显示问题 | Welcome to SakuraWh Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SakuraWh的个人博客，主要涉及编程（Java），个人提升学习，记录学习笔记。">
-<meta name="keywords" content="SakuraWh，王华，java，学习，笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Welcome to SakuraWh Blog">
-<meta property="og:url" content="http://yoursite.com/tags/教程/index.html">
+  <meta name="description" content="这两天本来想更新Spring学习的博客，昨晚在写完IOC的博客之后，Markdown文件下图片的引用出现了问题，找了挺多解决方案，差点给我整自闭了，记录一下。 传统的MarkDown文件下引用图片的方式是  ！[名称]{本地连接}  但是少量图片还好说，图片一多，就不好管理了，昨天更新博客时突然不能插入图片了，所以我查了挺多方法，最后决定通过搭建图床的方式来进行图片储存。 图床就是一个放在网上储存">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创建腾讯图床用于解决Hexo框架下md文件图片显示问题">
+<meta property="og:url" content="http://yoursite.com/2019/10/05/创建腾讯图床用于解决Hexo框架下md文件图片显示问题/index.html">
 <meta property="og:site_name" content="Welcome to SakuraWh Blog">
-<meta property="og:description" content="SakuraWh的个人博客，主要涉及编程（Java），个人提升学习，记录学习笔记。">
+<meta property="og:description" content="这两天本来想更新Spring学习的博客，昨晚在写完IOC的博客之后，Markdown文件下图片的引用出现了问题，找了挺多解决方案，差点给我整自闭了，记录一下。 传统的MarkDown文件下引用图片的方式是  ！[名称]{本地连接}  但是少量图片还好说，图片一多，就不好管理了，昨天更新博客时突然不能插入图片了，所以我查了挺多方法，最后决定通过搭建图床的方式来进行图片储存。 图床就是一个放在网上储存">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/%E5%88%9B%E5%BB%BA%E8%85%BE%E8%AE%AF%E5%9B%BE%E5%BA%8A%E7%94%A8%E4%BA%8E%E8%A7%A3%E5%86%B3Hexo%E6%A1%86%E6%9E%B6%E4%B8%8Bmd%E6%96%87%E4%BB%B6%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/1.PNG">
+<meta property="og:updated_time" content="2019-10-04T17:24:10.821Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Welcome to SakuraWh Blog">
-<meta name="twitter:description" content="SakuraWh的个人博客，主要涉及编程（Java），个人提升学习，记录学习笔记。">
+<meta name="twitter:title" content="创建腾讯图床用于解决Hexo框架下md文件图片显示问题">
+<meta name="twitter:description" content="这两天本来想更新Spring学习的博客，昨晚在写完IOC的博客之后，Markdown文件下图片的引用出现了问题，找了挺多解决方案，差点给我整自闭了，记录一下。 传统的MarkDown文件下引用图片的方式是  ！[名称]{本地连接}  但是少量图片还好说，图片一多，就不好管理了，昨天更新博客时突然不能插入图片了，所以我查了挺多方法，最后决定通过搭建图床的方式来进行图片储存。 图床就是一个放在网上储存">
+<meta name="twitter:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/%E5%88%9B%E5%BB%BA%E8%85%BE%E8%AE%AF%E5%9B%BE%E5%BA%8A%E7%94%A8%E4%BA%8E%E8%A7%A3%E5%86%B3Hexo%E6%A1%86%E6%9E%B6%E4%B8%8Bmd%E6%96%87%E4%BB%B6%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/1.PNG">
   
     <link rel="alternative" href="/atom.xml" title="Welcome to SakuraWh Blog" type="application/atom+xml">
   
@@ -47,7 +50,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/imgs/head.jpeg" class="js-avatar">
+			<img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/第一篇博客/head.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">SakuraWh</a></h1>
@@ -91,7 +94,9 @@
 		        
 					<a class="weixin" target="_blank" href="#" title="weixin"><i class="icon-weixin"></i></a>
 		        
-					<a class="bilibili" target="_blank" href="#" title="bilibili"><i class="icon-bilibili"></i></a>
+					<a class="bilibili" target="_blank" href="https://space.bilibili.com/9036753" title="bilibili"><i class="icon-bilibili"></i></a>
+		        
+					<a class="mail" target="_blank" href="/964219634@qq.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 		</nav>
@@ -109,7 +114,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/imgs/head.jpeg" class="js-avatar">
+				<img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/第一篇博客/head.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">SakuraWh</h1>
@@ -136,7 +141,9 @@
 			        
 						<a class="weixin" target="_blank" href="#" title="weixin"><i class="icon-weixin"></i></a>
 			        
-						<a class="bilibili" target="_blank" href="#" title="bilibili"><i class="icon-bilibili"></i></a>
+						<a class="bilibili" target="_blank" href="https://space.bilibili.com/9036753" title="bilibili"><i class="icon-bilibili"></i></a>
+			        
+						<a class="mail" target="_blank" href="/964219634@qq.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -164,78 +171,163 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-创建腾讯图床用于解决Hexo框架下md文件图片显示问题" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      创建腾讯图床用于解决Hexo框架下md文件图片显示问题
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/21/测试/" class="archive-article-date">
-  	<time datetime="2019-09-20T17:13:47.342Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-21</time>
+
+        
+        <a href="/2019/10/05/创建腾讯图床用于解决Hexo框架下md文件图片显示问题/" class="archive-article-date">
+  	<time datetime="2019-10-04T17:01:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-05</time>
 </a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这两天本来想更新Spring学习的博客，昨晚在写完IOC的博客之后，Markdown文件下图片的引用出现了问题，找了挺多解决方案，差点给我整自闭了，记录一下。</p>
+<p>传统的MarkDown文件下引用图片的方式是</p>
+<blockquote>
+<p>！[名称]{本地连接}</p>
+</blockquote>
+<p>但是少量图片还好说，图片一多，就不好管理了，昨天更新博客时突然不能插入图片了，所以我查了挺多方法，最后决定通过搭建图床的方式来进行图片储存。</p>
+<p>图床就是一个放在网上储存图片的东西。</p>
+<h2 id="1-注册腾讯云COS"><a href="#1-注册腾讯云COS" class="headerlink" title="1.注册腾讯云COS"></a>1.注册腾讯云COS</h2><p><a href="https://console.cloud.tencent.com/" target="_blank" rel="noopener">下载链接</a></p>
+<p>然后直接用自己QQ号完成注册好了，这个好像是先免费半年，之后就要收费了，虽然很想白嫖，但是这样起码省心点，毕竟腾讯，大树底下好乘凉，也许半年后我就能找到工作了，给它续费。</p>
+<h2 id="2-下载COSBrower"><a href="#2-下载COSBrower" class="headerlink" title="2.下载COSBrower"></a>2.下载COSBrower</h2><p>注册完毕后下载COSBrower，就是上传图片的桌面应用。</p>
+<p><a href="https://cloud.tencent.com/developer/article/1181547" target="_blank" rel="noopener">下载链接</a></p>
+<p>下载后安装，登录时候的id和密码在腾讯云上的</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/%E5%88%9B%E5%BB%BA%E8%85%BE%E8%AE%AF%E5%9B%BE%E5%BA%8A%E7%94%A8%E4%BA%8E%E8%A7%A3%E5%86%B3Hexo%E6%A1%86%E6%9E%B6%E4%B8%8Bmd%E6%96%87%E4%BB%B6%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/1.PNG" alt></p>
+<h2 id="3-配置使用"><a href="#3-配置使用" class="headerlink" title="3.配置使用"></a>3.配置使用</h2><p>然后就拖拽创建对应目录，完成好之后，再根据大概这个格式</p>
+<pre><code>https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/创建腾讯图床用于解决Hexo框架下md文件图片显示问题/1.PNG</code></pre><p>这个样子的链接放在md文件中，就可以实现图床链接了。</p>
+<h2 id="4-多说一句"><a href="#4-多说一句" class="headerlink" title="4.多说一句"></a>4.多说一句</h2><p>半夜一点了，该睡觉了，博客写的有点敷衍，详细步骤就那样，摸索摸索，或者问我也行就这样8。</p>
+<p>放假了在家有些懈怠学习，果然学校才是最好的，希望我能认真学习，有效利用放假时间，加油！</p>
+<p>晚安。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人网站</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">blog</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">搬瓦工</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/05/创建腾讯图床用于解决Hexo框架下md文件图片显示问题/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/10/03/Spring学习笔记：IOC&DI/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring学习笔记：IOC&amp;DI</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -258,15 +350,15 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -328,11 +420,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">个人网站</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">教程</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -340,19 +432,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">搬瓦工</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
             
             <div class="clearfix"></div>
@@ -400,6 +484,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
     
     	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://www.bilibili.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Bilibili</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.baidu.com" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>百度</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.nowcoder.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>牛客网</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://cn.bing.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Bing</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.google.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Google</a>
+            </li>
+          
+        </ul>
   		
     	</section>
     
