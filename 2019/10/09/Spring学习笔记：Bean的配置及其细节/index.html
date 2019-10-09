@@ -6,19 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/10 | Welcome to SakuraWh Blog</title>
+  <title>Spring学习笔记：Bean的配置及其细节 | Welcome to SakuraWh Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SakuraWh的个人博客，主要涉及编程（Java），个人提升学习，记录学习笔记。">
-<meta name="keywords" content="SakuraWh，王华，java，学习，笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Welcome to SakuraWh Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2019/10/index.html">
+  <meta name="description" content="1.Bean的简述我们看xml配置文件的属性   在一个&amp;lt; bean &amp;gt;标签下有以下属性 -id -class Id：标识容器中的bean，id唯一。  我们知道程序是通过id来识别到对应的bean。 Class：bean的全类名，通过反射的方式在IOC容器中创建bean，所以要求bean中必须有无参的构造器。 我们知道在配置xml文件时，class是类的包名加类名，所以是利用反射机制">
+<meta name="keywords" content="Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring学习笔记：Bean的配置及其细节">
+<meta property="og:url" content="http://yoursite.com/2019/10/09/Spring学习笔记：Bean的配置及其细节/index.html">
 <meta property="og:site_name" content="Welcome to SakuraWh Blog">
-<meta property="og:description" content="SakuraWh的个人博客，主要涉及编程（Java），个人提升学习，记录学习笔记。">
+<meta property="og:description" content="1.Bean的简述我们看xml配置文件的属性   在一个&amp;lt; bean &amp;gt;标签下有以下属性 -id -class Id：标识容器中的bean，id唯一。  我们知道程序是通过id来识别到对应的bean。 Class：bean的全类名，通过反射的方式在IOC容器中创建bean，所以要求bean中必须有无参的构造器。 我们知道在配置xml文件时，class是类的包名加类名，所以是利用反射机制">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ABean%E7%9A%84%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%85%B6%E7%BB%86%E8%8A%82/1.png">
+<meta property="og:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ABean%E7%9A%84%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%85%B6%E7%BB%86%E8%8A%82/2.png">
+<meta property="og:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ABean%E7%9A%84%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%85%B6%E7%BB%86%E8%8A%82/3.png">
+<meta property="og:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ABean%E7%9A%84%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%85%B6%E7%BB%86%E8%8A%82/4.png">
+<meta property="og:updated_time" content="2019-10-09T12:08:59.001Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Welcome to SakuraWh Blog">
-<meta name="twitter:description" content="SakuraWh的个人博客，主要涉及编程（Java），个人提升学习，记录学习笔记。">
+<meta name="twitter:title" content="Spring学习笔记：Bean的配置及其细节">
+<meta name="twitter:description" content="1.Bean的简述我们看xml配置文件的属性   在一个&amp;lt; bean &amp;gt;标签下有以下属性 -id -class Id：标识容器中的bean，id唯一。  我们知道程序是通过id来识别到对应的bean。 Class：bean的全类名，通过反射的方式在IOC容器中创建bean，所以要求bean中必须有无参的构造器。 我们知道在配置xml文件时，class是类的包名加类名，所以是利用反射机制">
+<meta name="twitter:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ABean%E7%9A%84%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%85%B6%E7%BB%86%E8%8A%82/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Welcome to SakuraWh Blog" type="application/atom+xml">
   
@@ -168,36 +174,153 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Spring学习笔记：Bean的配置及其细节" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Spring学习笔记：Bean的配置及其细节
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/09/Spring学习笔记：Bean的配置及其细节/" class="archive-article-date">
+
+        
+        <a href="/2019/10/09/Spring学习笔记：Bean的配置及其细节/" class="archive-article-date">
   	<time datetime="2019-10-09T11:43:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-09</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/09/Spring学习笔记：Bean的配置及其细节/">Spring学习笔记：Bean的配置及其细节</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Bean的简述"><a href="#1-Bean的简述" class="headerlink" title="1.Bean的简述"></a>1.Bean的简述</h1><p>我们看xml配置文件的属性</p>
+<p> <img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ABean%E7%9A%84%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%85%B6%E7%BB%86%E8%8A%82/1.png" alt></p>
+<p>在一个<strong>&lt; bean &gt;</strong>标签下有以下属性</p>
+<p><strong>-id</strong></p>
+<p><strong>-class</strong></p>
+<p><strong>Id：标识容器中的bean，id唯一。</strong></p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ABean%E7%9A%84%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%85%B6%E7%BB%86%E8%8A%82/2.png" alt></p>
+<p>我们知道程序是通过id来识别到对应的bean。</p>
+<p><strong>Class：bean的全类名，通过反射的方式在IOC容器中创建bean，所以要求bean中必须有无参的构造器。</strong></p>
+<p>我们知道在配置xml文件时，class是类的包名加类名，所以是利用反射机制来创建类。</p>
+<p>当我们的类中没有无参的构造方法时，就会提示没有构造器</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ABean%E7%9A%84%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%85%B6%E7%BB%86%E8%8A%82/3.png" alt></p>
+<p>如果没有构造方法，默认调用无参构造方法。</p>
+<hr>
+<h1 id="2-IOC容器"><a href="#2-IOC容器" class="headerlink" title="2.IOC容器"></a>2.IOC容器</h1><p>ApplicationContext代表IOC容器，Spring提供了两种类型的IOC容器基本实现。</p>
+<p>   <strong>-BeanFactory：IOC容器的基本实现</strong></p>
+<p>   <strong>-ApplicationContext：提供更多的高级特性，是BeanFactory的子接口。</strong></p>
+<p>区别：</p>
+<p>BeanFactoty是Spring架构的基础设施，面向Spring本身，而ApplicationContext则是面向Spring框架的开发者，大多数使用ApplicationContext而不是底层的BeanFactory。（教学说的）</p>
+<p>相同：</p>
+<p>配置文件时是相同的。</p>
+<h2 id="ApplicationContext-："><a href="#ApplicationContext-：" class="headerlink" title="ApplicationContext ："></a>ApplicationContext ：</h2><p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ABean%E7%9A%84%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%85%B6%E7%BB%86%E8%8A%82/4.png" alt></p>
+<p>通过查看其实现及接口我们可以看到其层次结构（IDEA选中后按Ctrl+H）</p>
+<p>ApplicationContext的主要实现类:</p>
+<p>  <strong>-ClassPathXmlApplicationContext</strong>:从类路径下加载配置文件</p>
+<p>  <strong>-FileSystemXmlApplicationContext</strong>:从文件系统中加载配置文件</p>
+<pre><code>ApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</code></pre><p>实现了容器的加载及bean中对线的创建</p>
+<hr>
+<h1 id="3-Spring常用2种依赖注入的方式"><a href="#3-Spring常用2种依赖注入的方式" class="headerlink" title="3.Spring常用2种依赖注入的方式"></a>3.Spring常用2种依赖注入的方式</h1><p><strong>-构造器注入</strong></p>
+<p><strong>-setter注入</strong> </p>
+<p>首先声明两个测试对象</p>
+<pre><code>public class Person {
+    private String name;
+    private Integer age;
+    private Integer hight;
+    //构造，set、get方法略
+}
 
-        <div class="article-info info-on-right">
-          
+public class Man {
+    private Person person;
+    //构造，set、get方法略
+}</code></pre><h2 id="构造器注入"><a href="#构造器注入" class="headerlink" title="构造器注入"></a>构造器注入</h2><p>构造器注入就是<strong>基于构造方法实现</strong>的 容器调用带有一组参数实现类的构造方法完成依赖注入，使用的是〈 bean 〉标签中的〈 constructor-arg 〉元素</p>
+<p>在xml中添加bean,使用构造器注入属性值，使用value属性进行参数值的注入</p>
+<p>对应xml文件</p>
+<pre><code>&lt;bean id=&quot;person&quot; class=&quot;com.sakura.spring.beans.constructor.Person&quot;&gt;
+    &lt;constructor-arg value=&quot;二狗&quot; index=&quot;0&quot; type=&quot;java.lang.String&quot;&gt;&lt;/constructor-arg&gt;
+    &lt;constructor-arg value=&quot;170&quot; name=&quot;age&quot;&gt;&lt;/constructor-arg&gt;
+    &lt;constructor-arg value=&quot;12&quot;  name=&quot;hight&quot;&gt;&lt;/constructor-arg&gt;
+&lt;/bean&gt;
+&lt;bean id=&quot;man&quot; class=&quot;com.sakura.spring.beans.constructor.Man&quot;&gt;
+    &lt;constructor-arg ref=&quot;person&quot;/&gt;
+&lt;/bean&gt;</code></pre><p>其中<bean>标签下的<constructor-arg>标签对应构造方法中的多个属性，通过指定value值进行属性注入。</constructor-arg></bean></p>
+<p>其中要注意：</p>
+<p>1.在只指定了value的情况下，即</p>
+<pre><code>&lt;constructor-arg value=&quot;二狗&quot; &gt;&lt;/constructor-arg&gt;
+&lt;constructor-arg value=&quot;170&quot; &gt;&lt;/constructor-arg&gt;
+&lt;constructor-arg value=&quot;12&quot;&gt;&lt;/constructor-arg&gt;</code></pre><p>   容器默认根据类中属性的先后顺序进行赋值，类型自动转换</p>
+<p>   当遇到String类型对应到int类型时，编译会报错。</p>
+<p>2.可以指定index、type值让容器根据顺序和数据类型进行对应赋值</p>
+<p>3.可以指定 name属性，对其进行精准注入，因为本质上是调用构造方法，所以name值错误或者重复赋值都会报错</p>
+<p>4.也可以通过ref指向其他的bean建立依赖关系</p>
+<p>测试代码：</p>
+<pre><code>public static void main(String[] args) {
+    ApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;com/sakura/spring/beans/constructor/constructor-applicationContext.xml&quot;);
+    Person person=ctx.getBean(&quot;person&quot;,Person.class);
+    System.out.println(person);
+
+    Man man=ctx.getBean(&quot;man&quot;,Man.class);
+    System.out.println(man);
+}</code></pre><p>测试结果：</p>
+<pre><code>Person{name=&apos;二狗&apos;, age=170, hight=12}
+Man{person=Person{name=&apos;二狗&apos;, age=170, hight=12}}</code></pre><p>实现了依赖关系。</p>
+<h2 id="Setter注入"><a href="#Setter注入" class="headerlink" title="Setter注入"></a>Setter注入</h2><p>当容器调用一个<strong>无参的构造函数</strong>来初始化bean，通过容器在bean 上<strong>调用setter设值函数</strong> ，使用的是〈bean〉标签中的〈property〉元素property的name属性指定类的属性名，需要一致，其他与构造器方法相同<br>在xml中添加一个新的bean</p>
+<pre><code>&lt;bean id=&quot;personSet&quot; class=&quot;com.sakura.spring.beans.constructor.Person&quot;&gt;
+    &lt;property name=&quot;hight&quot; value=&quot;170&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;age&quot; value=&quot;12&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;name&quot; value=&quot;张三&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;</code></pre><p>通过在对应的set方法下添加对应输出<br>我们可以看到输出结果</p>
+<pre><code>set方法..height
+set方法..age
+set方法..name
+Person{name=&apos;张三&apos;, age=12, hight=170}</code></pre><h2 id="集合注入方法"><a href="#集合注入方法" class="headerlink" title="集合注入方法"></a>集合注入方法</h2><p>除了进行单值的注入，我们有时还需要对数组或集合进行注入</p>
+<p>&lt; list &gt;：注入一列值，允许重复</p>
+<p>&lt; set &gt;：注入一列值，不允许重复</p>
+<p>&lt; map &gt;:注入键(名)值对的集合，名称和值可以是任何类型</p>
+<p>&lt; props &gt;:注入键(名)值对的集合，名称和值可以是任何类型</p>
+<p>测试类：</p>
+<pre><code>public class JavaCollection {
+    private List list;
+    private Map map;
+    private Properties prop;
+}</code></pre><p>添加bean：</p>
+<pre><code>&lt;bean id=&quot;coll&quot; class=&quot;com.sakura.spring.beans.constructor.JavaCollection&quot;&gt;
+    &lt;property name=&quot;list&quot;&gt;
+        &lt;!-- 注入集合 值可重复 set就不举例了--&gt;
+        &lt;list&gt;
+            &lt;value&gt;list1&lt;/value&gt;
+            &lt;value&gt;list1&lt;/value&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;map&quot;&gt;
+        &lt;!-- 注入map --&gt;
+        &lt;map&gt;
+            &lt;entry key=&quot;二蛋&quot;&gt;
+                &lt;value&gt;18&lt;/value&gt;
+            &lt;/entry&gt;
+            &lt;entry key=&quot;三蛋&quot;&gt;
+                &lt;value&gt;5&lt;/value&gt;
+            &lt;/entry&gt;
+        &lt;/map&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;prop&quot;&gt;
+        &lt;!-- 注入properties --&gt;
+        &lt;props&gt;
+            &lt;prop key=&quot;二黑&quot;&gt;男&lt;/prop&gt;
+            &lt;prop key=&quot;三黑&quot;&gt;男&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;</code></pre><p>测试结果：</p>
+<pre><code>JavaCollection{list=[list1], map={二蛋=18, 三蛋=5}, prop={三黑=男, 二黑=男}}</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -209,95 +332,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/09/Spring学习笔记：Bean的配置及其细节/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/05/创建腾讯图床用于解决Hexo框架下md文件图片显示问题/" class="archive-article-date">
-  	<time datetime="2019-10-04T17:01:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-05</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/05/创建腾讯图床用于解决Hexo框架下md文件图片显示问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">创建腾讯图床用于解决Hexo框架下md文件图片显示问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/05/创建腾讯图床用于解决Hexo框架下md文件图片显示问题/">创建腾讯图床用于解决Hexo框架下md文件图片显示问题</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/03/Spring学习笔记：IOC&DI/" class="archive-article-date">
-  	<time datetime="2019-10-03T08:42:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/03/Spring学习笔记：IOC&DI/">Spring学习笔记：IOC&amp;DI</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -320,8 +454,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
