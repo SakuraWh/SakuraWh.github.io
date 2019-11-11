@@ -6,26 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Spring学习笔记：IOC&amp;DI | Welcome to SakuraWh Blog</title>
+  <title>JVM初学习 | Welcome to SakuraWh Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="要了解Spring框架，我们首先要了解其基本思想IOC&amp;amp;DI 什么是IOC &amp;amp; DI？根据百度百科给出的定义：  控制反转（Inversion of Control，缩写为IoC），是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。其中最常见的方式叫做依赖注入（Dependency Injection，简称DI）。  当我们完成一个项目时，不同的模块与类之间相互合">
-<meta name="keywords" content="Spring">
+  <meta name="description" content="这两天早上上着班，不能用电脑，所以就看看基础知识，做了点笔记记录一下">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring学习笔记：IOC&amp;DI">
-<meta property="og:url" content="http://yoursite.com/2019/10/03/Spring学习笔记：IOC&DI/index.html">
+<meta property="og:title" content="JVM初学习">
+<meta property="og:url" content="http://yoursite.com/2019/10/12/JVM初学习/index.html">
 <meta property="og:site_name" content="Welcome to SakuraWh Blog">
-<meta property="og:description" content="要了解Spring框架，我们首先要了解其基本思想IOC&amp;amp;DI 什么是IOC &amp;amp; DI？根据百度百科给出的定义：  控制反转（Inversion of Control，缩写为IoC），是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。其中最常见的方式叫做依赖注入（Dependency Injection，简称DI）。  当我们完成一个项目时，不同的模块与类之间相互合">
+<meta property="og:description" content="这两天早上上着班，不能用电脑，所以就看看基础知识，做了点笔记记录一下">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/1.PNG">
-<meta property="og:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/2.PNG">
-<meta property="og:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/3.PNG">
-<meta property="og:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/4.PNG">
-<meta property="og:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/5.PNG">
-<meta property="og:updated_time" content="2019-10-04T16:55:53.103Z">
+<meta property="og:updated_time" content="2019-10-12T12:52:50.691Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring学习笔记：IOC&amp;DI">
-<meta name="twitter:description" content="要了解Spring框架，我们首先要了解其基本思想IOC&amp;amp;DI 什么是IOC &amp;amp; DI？根据百度百科给出的定义：  控制反转（Inversion of Control，缩写为IoC），是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。其中最常见的方式叫做依赖注入（Dependency Injection，简称DI）。  当我们完成一个项目时，不同的模块与类之间相互合">
-<meta name="twitter:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/1.PNG">
+<meta name="twitter:title" content="JVM初学习">
+<meta name="twitter:description" content="这两天早上上着班，不能用电脑，所以就看看基础知识，做了点笔记记录一下">
   
     <link rel="alternative" href="/atom.xml" title="Welcome to SakuraWh Blog" type="application/atom+xml">
   
@@ -175,46 +169,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Spring学习笔记：IOC&amp;DI" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-JVM初学习" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Spring学习笔记：IOC&amp;DI
+      JVM初学习
     </h1>
   
 
         
-        <a href="/2019/10/03/Spring学习笔记：IOC&DI/" class="archive-article-date">
-  	<time datetime="2019-10-03T08:42:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-03</time>
+        <a href="/2019/10/12/JVM初学习/" class="archive-article-date">
+  	<time datetime="2019-10-12T11:22:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>要了解Spring框架，我们首先要了解其基本思想IOC&amp;DI</p>
-<h2 id="什么是IOC-amp-DI？"><a href="#什么是IOC-amp-DI？" class="headerlink" title="什么是IOC &amp; DI？"></a>什么是IOC &amp; DI？</h2><p>根据百度百科给出的定义：</p>
-<blockquote>
-<p>控制反转（Inversion of Control，缩写为IoC），是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。其中最常见的方式叫做依赖注入（Dependency Injection，简称DI）。</p>
-</blockquote>
-<p>当我们完成一个项目时，不同的模块与类之间相互合作，互相依赖，这时当我们需要单独使用其中一个类时，由于过高的耦合性，导致模块的功能无法正常实现，出现各种无法预知的问题。</p>
-<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/1.PNG" alt></p>
-<p>IOC是一种设计思想（原则），观点大致是借助“第三方”实现依赖关系之间的解耦，如下图：</p>
-<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/2.PNG" alt></p>
-<p>图中“第三方”就是IOC容器，让A、B、C、D不再具有耦合关系，全部的控制权都在“第三方”IOC容器，如果去掉IOC容器，对象与对象之间就会失去联系。</p>
-<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/3.PNG" alt></p>
-<p>此时，对于每个单独的对象来说，已经没有了耦合关系，当实现A时就无需考虑B、C、D了，而为了在系统中使用B对象，传统方式是由A对象主动地创建B对象获取直接控制；而对于IOC来说，就是通过IOC容器来创建B对象，再将B对象注入到A对象需要的地方。</p>
-<p>这样A依赖B的过程就变成了<strong>被动</strong>的方式，这就叫“<strong>控制反转</strong>”。</p>
-<p>依赖注入DI是反转控制的另一种表达方式，指的是组件以预先定义好的方式（<strong>setter方法</strong>）来接受来自容器的资源注入。</p>
-<hr>
-<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/4.PNG" alt></p>
-<p>项目通过配置xml文件中的对象属性，在执行程序时由IOC容器的将其注入</p>
-<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/5.PNG" alt></p>
-<p>具体就是通过IOC容器，根据xml文件中提供的配置，将对象定义好后，再通过预设好的set方法将对应的属性值进行注入，这样就实现了对象无需再被主动创建，而是由IOC容器创建完成后，用到的时候再从IOC容器中接收即可。</p>
-<p>文章参考：<a href="https://blog.csdn.net/ivan820819/article/details/79744797" target="_blank" rel="noopener">https://blog.csdn.net/ivan820819/article/details/79744797</a></p>
+        <p>这两天早上上着班，不能用电脑，所以就看看基础知识，做了点笔记记录一下</p>
+<p><a href="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/head.jpeg" target="_blank" rel="noopener"></a></p>
 
       
 
@@ -228,7 +204,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -284,7 +260,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/03/Spring学习笔记：IOC&DI/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/12/JVM初学习/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -298,18 +274,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/05/创建腾讯图床用于解决Hexo框架下md文件图片显示问题/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/10/29/苏州上海一周游/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          创建腾讯图床用于解决Hexo框架下md文件图片显示问题
+          苏州上海一周游
         
       </div>
     </a>
   
   
-    <a href="/2019/09/30/idea配置spring框架并实现HelloWorld/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">idea配置spring框架并实现HelloWorld</div>
+    <a href="/2019/10/09/Spring学习笔记：Bean的配置及其细节/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring学习笔记：Bean的配置及其细节</div>
       <i class="icon-circle-right"></i>
     </a>
   
