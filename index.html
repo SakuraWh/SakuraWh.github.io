@@ -170,6 +170,97 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-算法-树（合并二叉树）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/11/算法-树（合并二叉树）/">算法-树（合并二叉树）</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/11/算法-树（合并二叉树）/" class="archive-article-date">
+  	<time datetime="2019-11-11T09:34:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="二叉树合并问题："><a href="#二叉树合并问题：" class="headerlink" title="二叉树合并问题："></a>二叉树合并问题：</h1><p><strong>问题描述：</strong></p>
+<p>对两颗树进行合并，都有的结点值相加，没有的结点用有的结点替换。</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/%E7%AE%97%E6%B3%95-%E6%A0%91%EF%BC%88%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%89/1.png" alt></p>
+<hr>
+<p><strong>解题思路：</strong></p>
+<blockquote>
+<pre><code>对二叉树进行先序遍历（根左右），对于当前结点：
+
+    1.如果两个结点都不为空，则val值相加；
+
+    2.如果两个结点其中一个为空，返回另一个结点；
+
+    3.如果两个结点都为空，返回任一结点（null）;</code></pre></blockquote>
+<p>1.当左右均有子结点时候，值合并返回给父结点。</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/%E7%AE%97%E6%B3%95-%E6%A0%91%EF%BC%88%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%89/2.png" alt></p>
+<p>2.当左右树只有一个存在结点时，返回存在的结点值。（该存在结点如果存在子树，那么该子树就直接等于原值）。</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/%E7%AE%97%E6%B3%95-%E6%A0%91%EF%BC%88%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%89/3.png" alt></p>
+<p>3.当两棵树均不含此结点时，返回null即可。<br><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/%E7%AE%97%E6%B3%95-%E6%A0%91%EF%BC%88%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%89/4.png" alt></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法 leetcode 树</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/11/算法-树（合并二叉树）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-算法-数组（双指针法）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1210,82 +1301,10 @@ hexo help             # 帮助</code></pre>
 
 
   
-    <article id="post-第一篇博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/21/第一篇博客/">第一篇博客</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/21/第一篇博客/" class="archive-article-date">
-  	<time datetime="2019-09-21T04:42:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="第一次写个人博客"><a href="#第一次写个人博客" class="headerlink" title="第一次写个人博客"></a>第一次写个人博客</h1><p>通过一晚上加一早上的时间，完成了个人博客的搭建，目前很多功能不熟悉</p>
-<p>之后会更新一篇如何<strong>搭建个人博客</strong>教程</p>
-<p>博客是为了<strong>记录</strong>自己学习经历<br><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/head.jpeg" alt></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/21/第一篇博客/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -1379,15 +1398,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">算法 leetcode 数组</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1399,11 +1414,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">算法 leetcode 树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">算法 leetcode 数组</a>
               </li>
             
             <div class="clearfix"></div>
