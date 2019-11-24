@@ -312,26 +312,18 @@ public static Boolean valueOf(boolean b) {
 true
 true
 false
-true</code></pre><ol>
-<li><p>a拆箱，b拆箱，相加结果为int，c拆箱，int和int相比较.</p>
-</li>
-<li><p>a拆箱，b拆箱，相加结果为int,方法equals的参数是Object，所以int又要装箱，引用比较，又因为数据3在cache里，所以为true.</p>
-</li>
-<li><p>a拆箱，b拆箱，相加结果为int，转化为long型,g拆箱，数值相比较，为true.</p>
-</li>
-<li><p>a拆箱，b拆箱，相加结果为int，<strong>方法equals的参数是Object，所以int又要装箱为Integer</strong>，Long和Integer比较，所以为false.</p>
-</li>
-<li><p>a拆箱，b拆箱，相加结果为long，方法equals的参数是Object，所以要装箱为Long，Long和Long相比较，所以为true。</p>
-</li>
-</ol>
+true</code></pre><p>1.a拆箱，b拆箱，相加结果为int，c拆箱，int和int相比较.</p>
+<p>2.a拆箱，b拆箱，相加结果为int,方法equals的参数是Object，所以int又要装箱，引用比较，又因为数据3在cache里，所以为true.</p>
+<p>3.a拆箱，b拆箱，相加结果为int，转化为long型,g拆箱，数值相比较，为true.</p>
+<p>4.a拆箱，b拆箱，相加结果为int，<strong>方法equals的参数是Object，所以int又要装箱为Integer</strong>，Long和Integer比较，所以为false.</p>
+<p>5.a拆箱，b拆箱，相加结果为long，方法equals的参数是Object，所以要装箱为Long，Long和Long相比较，所以为true。</p>
 <p><strong>结论</strong></p>
 <p>从以上测试中，可以得出以下结论：</p>
 <p>１：当基本数据类型和包装器类型</p>
 <p>做　==　+　和　-　运算时，包装器类型会拆箱为基本数据类型，再做运算。</p>
 <h2 id="陷阱"><a href="#陷阱" class="headerlink" title="陷阱"></a>陷阱</h2><pre><code>Integer integer = null;  
 int i = integer; </code></pre><p>这两行代码是完全合法的，完全能够通过编译的，但是在运行时，就会抛出空指针异常。<br>其中，integer为Integer类型的对象，它当然可以指向null。<br>但在第二行时，就会对integer进行拆箱，也就是对一个null对象执行intValue()方法，当然会抛出空指针异常。<br>所以，有拆箱操作时一定要特别注意封装类对象是否为null。</p>
-<p>##</p>
-<pre><code>Long sum = 0L;
+<h2 id><a href="#" class="headerlink" title=" "></a> </h2><pre><code>Long sum = 0L;
 for (long i = 0; i &lt; Integer.MAX_VALUE; i++) {
     sum += i;
 }</code></pre><p>上述代码效率是低于</p>
@@ -347,6 +339,8 @@ for (long i = 0; i &lt; Integer.MAX_VALUE; i++) {
 <p>另外像</p>
 <pre><code>Long sum=0L; 
 sum++; </code></pre><p>会导致产生一个新的Long对象（即引用变量sum　在第二次指向了一个新的 Long对象），而第一次的那个Long对象就会被回收。</p>
+<hr>
+<p>参考：<a href="http://www.voidcn.com/article/p-ttlxenec-vn.html" target="_blank" rel="noopener">http://www.voidcn.com/article/p-ttlxenec-vn.html</a></p>
 
       
 
