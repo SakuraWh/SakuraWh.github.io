@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>JVM初学习 | Welcome to SakuraWh Blog</title>
+  <title>java参数传递 | Welcome to SakuraWh Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这两天早上上着班，不能用电脑，所以就看看基础知识，做了点笔记记录一下">
-<meta name="keywords" content="Java">
+  <meta name="description" content="结论1、基本类型作为参数传递时，是传递值的拷贝，无论你怎么改变这个拷贝，原值是不会改变的 2、对象作为参数传递时，是把对象在内存中的地址拷贝了一份传给了参数。 代码： public class dataChange {     public static void main(String[] args) {         int a=0;         Integer b=0;">
+<meta name="keywords" content="java 参数传递">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM初学习">
-<meta property="og:url" content="http://yoursite.com/2019/10/12/JVM初学习/index.html">
+<meta property="og:title" content="java参数传递">
+<meta property="og:url" content="http://yoursite.com/2019/11/24/java参数传递/index.html">
 <meta property="og:site_name" content="Welcome to SakuraWh Blog">
-<meta property="og:description" content="这两天早上上着班，不能用电脑，所以就看看基础知识，做了点笔记记录一下">
+<meta property="og:description" content="结论1、基本类型作为参数传递时，是传递值的拷贝，无论你怎么改变这个拷贝，原值是不会改变的 2、对象作为参数传递时，是把对象在内存中的地址拷贝了一份传给了参数。 代码： public class dataChange {     public static void main(String[] args) {         int a=0;         Integer b=0;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-12T12:52:50.691Z">
+<meta property="og:updated_time" content="2019-11-24T15:27:35.393Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM初学习">
-<meta name="twitter:description" content="这两天早上上着班，不能用电脑，所以就看看基础知识，做了点笔记记录一下">
+<meta name="twitter:title" content="java参数传递">
+<meta name="twitter:description" content="结论1、基本类型作为参数传递时，是传递值的拷贝，无论你怎么改变这个拷贝，原值是不会改变的 2、对象作为参数传递时，是把对象在内存中的地址拷贝了一份传给了参数。 代码： public class dataChange {     public static void main(String[] args) {         int a=0;         Integer b=0;">
   
     <link rel="alternative" href="/atom.xml" title="Welcome to SakuraWh Blog" type="application/atom+xml">
   
@@ -169,28 +169,59 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JVM初学习" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-java参数传递" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JVM初学习
+      java参数传递
     </h1>
   
 
         
-        <a href="/2019/10/12/JVM初学习/" class="archive-article-date">
-  	<time datetime="2019-10-12T11:22:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-12</time>
+        <a href="/2019/11/24/java参数传递/" class="archive-article-date">
+  	<time datetime="2019-11-24T15:13:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这两天早上上着班，不能用电脑，所以就看看基础知识，做了点笔记记录一下</p>
-<p><a href="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/head.jpeg" target="_blank" rel="noopener"></a></p>
+        <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>1、<strong>基本类型</strong>作为参数传递时，是传递值的拷贝，无论你怎么改变这个拷贝，原值是不会改变的</p>
+<p>2、<strong>对象</strong>作为参数传递时，是把对象在内存中的地址拷贝了一份传给了参数。</p>
+<p>代码：</p>
+<pre><code>public class dataChange {
+    public static void main(String[] args) {
+        int a=0;
+        Integer b=0;
+        String c=&quot;hello&quot;;
+        StringBuffer d=new StringBuffer(&quot;hello&quot;);
+        System.out.println(&quot;before change : a=&quot;+a +&quot;  b=&quot;+b+&quot;  c=&quot;+c+ &quot;  d=&quot;+d );
+        change(a,b,c,d);
+        System.out.println(&quot;after change : a=&quot;+a +&quot;  b=&quot;+b+&quot;  c=&quot;+c+ &quot;  d=&quot;+d );
+    }
+
+    private static void change(int a, Integer b, String c, StringBuffer d) {
+        a=1;
+        b=2;
+        c+=&quot;world&quot;;
+        d.append(&quot;world&quot;);
+    }
+}</code></pre><p>结果</p>
+<blockquote>
+<p>before change : a=0  b=0  c=hello  d=hello</p>
+<p>after change : a=0  b=0  c=hello  d=helloworld</p>
+</blockquote>
+<p>1.首先是a作为基本数据类型（int）进行传递时，是按值传递的，是<strong>传递值的拷贝</strong>，无论你怎么改变这个拷贝，原值是不会改变的。所以a的值不变。</p>
+<p>2.d作为对象，对象作为参数传递时是引用传递的，主函数中d<strong>指向的地址</strong>被传给了change函数中的d，所以对其的操作是对<strong>同一地址空间</strong>的内容进行操作。</p>
+<p>3.b同样作为对象，在传递时候也是进行地址传递，但是由于Integer的值是不可变得，所以对其的操作最终是转换成为：</p>
+<pre><code>b=new Interer(2);</code></pre><p>b指向的空间变成了新的对象空间。</p>
+<p>4.c同样的作为基本数据类型，String类中的值也是不可变得，对其的改变也是相当于新建对象。但是当String通过</p>
+<pre><code>String c=&quot;hello&quot;;//按值传递
+
+String c=new String(&quot;hello&quot;);//引用传递</code></pre><p>两种方式有不同，但都是无法在函数中改变的。</p>
 
       
 
@@ -204,7 +235,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java 参数传递</a>
         		</li>
       		
 		</ul>
@@ -260,7 +291,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/12/JVM初学习/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/11/24/java参数传递/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -274,18 +305,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/29/苏州上海一周游/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          苏州上海一周游
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/10/09/Spring学习笔记：Bean的配置及其细节/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Spring学习笔记：Bean的配置及其细节</div>
+    <a href="/2019/11/24/Java自动装箱和自动拆箱/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java自动装箱和自动拆箱</div>
       <i class="icon-circle-right"></i>
     </a>
   

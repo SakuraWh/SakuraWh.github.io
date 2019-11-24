@@ -170,6 +170,143 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-idea配置spring框架并实现HelloWorld" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/30/idea配置spring框架并实现HelloWorld/">idea配置spring框架并实现HelloWorld</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/30/idea配置spring框架并实现HelloWorld/" class="archive-article-date">
+  	<time datetime="2019-09-30T08:44:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-创建spring项目"><a href="#1-创建spring项目" class="headerlink" title="1.创建spring项目"></a>1.创建spring项目</h2><p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/idea%E9%85%8D%E7%BD%AEspring%E6%A1%86%E6%9E%B6%E5%B9%B6%E5%AE%9E%E7%8E%B0HelloWorld/creat.PNG" alt></p>
+<p>勾选springconfig.xml会默认创建对应的xml文件</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/idea%E9%85%8D%E7%BD%AEspring%E6%A1%86%E6%9E%B6%E5%B9%B6%E5%AE%9E%E7%8E%B0HelloWorld/setprojectname.PNG" alt></p>
+<p>实现spring项目的创建</p>
+<p>idea会自动下载对应的jar包</p>
+<p>项目目录如下：</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/idea%E9%85%8D%E7%BD%AEspring%E6%A1%86%E6%9E%B6%E5%B9%B6%E5%AE%9E%E7%8E%B0HelloWorld/link.PNG" alt></p>
+<hr>
+<h2 id="2-传统方法实现HelloWorld打印"><a href="#2-传统方法实现HelloWorld打印" class="headerlink" title="2.传统方法实现HelloWorld打印"></a>2.传统方法实现HelloWorld打印</h2><p>在package下创建HelloWorld类</p>
+<pre><code>package com.sakura.spring.beans.Helloworld;
+
+public class HelloWorld {
+    private String name;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void sayHello(){
+        System.out.println(&quot;Hello&quot; + name);
+    }
+
+}</code></pre><p>定义变量name<br>实现set方法<br>实现输出函数</p>
+<p>主函数实现</p>
+<pre><code>/*不使用框架的步骤:
+    1.创建HelloWorld对象
+    2.为实例对象赋值
+    3.调用对象方法
+ */
+HelloWorld helloWorld=new HelloWorld();
+helloWorld.setName(&quot;Spring&quot;);
+helloWorld.sayHello();</code></pre><p>打印出结果</p>
+<pre><code>HelloSpring</code></pre><hr>
+<h2 id="3-使用框架实现HelloWorld打印"><a href="#3-使用框架实现HelloWorld打印" class="headerlink" title="3.使用框架实现HelloWorld打印"></a>3.使用框架实现HelloWorld打印</h2><p>首先在applicationContext.xml文件下添加bean</p>
+<pre><code> &lt;!-- id用于标识类，class寻找类， property name表示调用setName方法，value为值 即setName（wh）--&gt;
+&lt;bean id=&quot;helloWorld&quot; class=&quot;com.sakura.spring.beans.Helloworld.HelloWorld&quot;&gt;
+    &lt;property name=&quot;name&quot; value=&quot;wh&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;</code></pre><p>主函数使用：</p>
+<pre><code>/*使用框架的步骤:
+    1.创建spring的IOC对象容器（bean） 
+    2.从IOC容器中获取Bean实例
+    3.调用对象方法
+*/
+ApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+HelloWorld helloWorld1=(HelloWorld)ctx.getBean(&quot;helloWorld&quot;);
+helloWorld1.sayHello();</code></pre><p>输出结果包含日志及对应结果</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/idea%E9%85%8D%E7%BD%AEspring%E6%A1%86%E6%9E%B6%E5%B9%B6%E5%AE%9E%E7%8E%B0HelloWorld/out.PNG" alt></p>
+<hr>
+<h2 id="4-验证执行顺序"><a href="#4-验证执行顺序" class="headerlink" title="4.验证执行顺序"></a>4.验证执行顺序</h2><pre><code>public void setName(String name) {
+    System.out.println(&quot;调用set方法&quot;);
+    this.name22 = name;
+}
+
+public void sayHello(){
+    System.out.println(&quot;Hello&quot; + name22);
+}
+
+public HelloWorld(){
+    System.out.println(&quot;创建hello world类&quot;);
+}</code></pre><p>写构造方法和set方法使其输出，再将主函数中获取Bean实例和调用对象方法注释掉，输出验证：</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/idea%E9%85%8D%E7%BD%AEspring%E6%A1%86%E6%9E%B6%E5%B9%B6%E5%AE%9E%E7%8E%B0HelloWorld/out2.PNG" alt></p>
+<p>可以得到结论：</p>
+<p><strong>新建applicationcontext上下文对象是初始化所有的变量，并且调用set方法</strong></p>
+<p>且在applicationContext.xm文件下的bean中Prooerty的name属性，仅仅是相关对应的set方法，<strong>与变量无关</strong>。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/30/idea配置spring框架并实现HelloWorld/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Maven工具安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -541,15 +678,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">java 装箱 拆箱</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java 参数传递</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,14 +706,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">算法 leetcode 数组</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">算法 leetcode 树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -577,7 +714,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java 装箱 拆箱</a>
+                <a href="javascript:void(0)" class="js-tag color5">算法 leetcode 数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">算法 leetcode 树</a>
               </li>
             
             <div class="clearfix"></div>
