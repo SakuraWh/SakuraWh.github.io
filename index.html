@@ -170,6 +170,225 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java自动装箱和自动拆箱" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/24/Java自动装箱和自动拆箱/">Java自动装箱和自动拆箱</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/24/Java自动装箱和自动拆箱/" class="archive-article-date">
+  	<time datetime="2019-11-24T12:12:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><strong>自动装箱</strong>：Java自动将原始数据类型转化为相应的包装类对象，例如，把int转化为Integer。</p>
+<p><strong>拆箱</strong>：自动装箱的反过程，相应的包装类对象转化为原始数据类型，例如，把Integer转为int。</p>
+<table border="1" width="500" cellspacing="1" cellpadding="1" class="table table-bordered"> 
+<caption>
+    内置类型和包装器 
+  </caption> 
+  <tbody> 
+   <tr> 
+    <td>内置类型</td> 
+    <td>包装器类型</td> 
+   </tr> 
+   <tr> 
+    <td>boolean</td> 
+    <td>Boolean</td> 
+   </tr> 
+   <tr> 
+    <td>char</td> 
+    <td>Character</td> 
+   </tr> 
+   <tr> 
+    <td>byte</td> 
+    <td>Byte</td> 
+   </tr> 
+   <tr> 
+    <td>short</td> 
+    <td>Short</td> 
+   </tr> 
+   <tr> 
+    <td>int</td> 
+    <td>Integer</td> 
+   </tr> 
+   <tr> 
+    <td>long</td> 
+    <td>Long</td> 
+   </tr> 
+   <tr> 
+    <td>float</td> 
+    <td>Float</td> 
+   </tr> 
+   <tr> 
+    <td>double</td> 
+    <td>Double</td> 
+   </tr> 
+   <tr> 
+    <td>void</td> 
+    <td>Void</td> 
+   </tr> 
+  </tbody> 
+ </table>
+
+<h2 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h2><p>当发生自动<strong>装箱</strong>时，编译器自动调用了<strong>valueOf()</strong>方法，得到相应的包装器对象；</p>
+<p>当发生<strong>拆装</strong>时，编译器自动调用了<strong>xxxValue()</strong>方法（例如IntValue，LongValue等）。</p>
+<ul>
+<li><p>如若想确认是否调用了相应的方法，可以在相应的位置设置断点，debug一下就能看到进入相应的方法。</p>
+</li>
+<li><p>使用java自带的javap反编译工具也能看得出来。</p>
+</li>
+</ul>
+<h2 id="性能的比较"><a href="#性能的比较" class="headerlink" title="性能的比较"></a>性能的比较</h2><p>自动装箱和拆箱是编译器分别通过自动调用valueOf()和xxxValue()来实现的，使用包装器类型和直接使用基本数据类型上就会有一性能的差距。</p>
+<pre><code>long t = System.currentTimeMillis();
+Long sum1 = new Long(0);//sum是包装器Long
+for(long i=0;i&lt;Integer.MAX_VALUE;i++){
+    sum1 += i;
+}
+System.out.println(&quot;use time: &quot; + (System.currentTimeMillis() - t) + &quot; ms&quot;);
+
+
+t = System.currentTimeMillis();
+long sum2 = new Long(0);//sum是基本类型long
+for(long i=0;i&lt;Integer.MAX_VALUE;i++){
+    sum2 += i;
+}
+System.out.println(&quot;use time: &quot; + (System.currentTimeMillis() - t) + &quot; ms&quot;);
+
+
+use time: 10770 ms
+use time: 1076 ms</code></pre><p>使用封装类的效率是低于基本数据类型的，大概相差十倍。</p>
+<h2 id="cache机制"><a href="#cache机制" class="headerlink" title="cache机制"></a>cache机制</h2><pre><code>public static void main(String[] args) {  
+       Integer i1 = 127;  
+       Integer i2 = 127;  
+       Integer i3 = 128;  
+       Integer i4 = 128;  
+
+       System. out.println(i1 == i2);  
+       System. out.println(i3 == i4);  
+}  </code></pre><p>输出结果是：</p>
+<pre><code>true
+false</code></pre><p>拆箱方法valueof()源码：</p>
+<pre><code>public static Integer valueOf(int i) {  
+    assert IntegerCache.high &gt;= 127;  
+    if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache. high)  
+        return IntegerCache.cache[i + (-IntegerCache.low)];  
+    return new Integer(i);  
+}  </code></pre><p>在Integer里，valueOf是以上这样实现的，为了<strong>降低内存占用</strong>和<strong>垃圾回收</strong>的成本，类库里增加了一个<strong>cache</strong>，保存常用的int包装器对象(<strong>-128　~ 127</strong>),当数值在这个范围时，就从cache里取出对象，所以i1和i2指同一个内在块，输出就为true。</p>
+<p>而i3和i4的值大于127，就不会在这个cache里取值，重新new一个对象，因此不是同一个内存块，输出就为false。</p>
+<p>Integer和Long都是使用了cache机制，所以在　-128　~ 127　之间，比较都为true</p>
+<p>但是Integer的cache大小可以通过参数来改变，但是Long却不行。</p>
+<pre><code>//改变cache大小
+-Djava.lang.Integer.IntegerCache.high=300  
+-Djava.lang.Integer.IntegerCache.low=-300  </code></pre><p>Boolean也使用了cache的机制，源代码如下：  </p>
+<pre><code>public static final Boolean TRUE = new Boolean(true);  
+public static final Boolean FALSE = new Boolean(false);  
+
+public static Boolean valueOf(boolean b) {  
+    return (b ? TRUE : FALSE);  
+}  </code></pre><h2 id="拆箱和装箱"><a href="#拆箱和装箱" class="headerlink" title="拆箱和装箱"></a>拆箱和装箱</h2><pre><code>public static void main(String[] args) {  
+        Integer a = 1;  
+        Integer b = 2;  
+        Integer c = 3;  
+        Long g = 3L;  
+        Long h = 2L;  
+
+        System.out.println(c==(a+b));//1  
+        System.out.println(c.equals(a+b));//2  
+        System.out.println(g==(a+b));//3  
+        System.out.println(g.equals(a+b));//4  
+        System.out.println(g.equals(a+h));//5  
+}  </code></pre><p>输出:</p>
+<pre><code>true
+true
+true
+false
+true</code></pre><ol>
+<li><p>a拆箱，b拆箱，相加结果为int，c拆箱，int和int相比较.</p>
+</li>
+<li><p>a拆箱，b拆箱，相加结果为int,方法equals的参数是Object，所以int又要装箱，引用比较，又因为数据3在cache里，所以为true.</p>
+</li>
+<li><p>a拆箱，b拆箱，相加结果为int，转化为long型,g拆箱，数值相比较，为true.</p>
+</li>
+<li><p>a拆箱，b拆箱，相加结果为int，<strong>方法equals的参数是Object，所以int又要装箱为Integer</strong>，Long和Integer比较，所以为false.</p>
+</li>
+<li><p>a拆箱，b拆箱，相加结果为long，方法equals的参数是Object，所以要装箱为Long，Long和Long相比较，所以为true。</p>
+</li>
+</ol>
+<p><strong>结论</strong></p>
+<p>从以上测试中，可以得出以下结论：</p>
+<p>１：当基本数据类型和包装器类型</p>
+<p>做　==　+　和　-　运算时，包装器类型会拆箱为基本数据类型，再做运算。</p>
+<h2 id="陷阱"><a href="#陷阱" class="headerlink" title="陷阱"></a>陷阱</h2><pre><code>Integer integer = null;  
+int i = integer; </code></pre><p>这两行代码是完全合法的，完全能够通过编译的，但是在运行时，就会抛出空指针异常。<br>其中，integer为Integer类型的对象，它当然可以指向null。<br>但在第二行时，就会对integer进行拆箱，也就是对一个null对象执行intValue()方法，当然会抛出空指针异常。<br>所以，有拆箱操作时一定要特别注意封装类对象是否为null。</p>
+<p>##</p>
+<pre><code>Long sum = 0L;
+for (long i = 0; i &lt; Integer.MAX_VALUE; i++) {
+    sum += i;
+}</code></pre><p>上述代码效率是低于</p>
+<pre><code>long sum = 0L;
+for (long i = 0; i &lt; Integer.MAX_VALUE; i++) {
+    sum += i;
+}</code></pre><p>原因是JDK的8个包装类和String 都是不可变类，即被创建后，实例的实例变量不可以改。</p>
+<p>所以第一段代码就等效于：</p>
+<pre><code>Long sum = 0L;
+for (long i = 0; i &lt; Integer.MAX_VALUE; i++) {
+    sum += new Long(i);
+}</code></pre><p>不必要地创建了2147483647个“Long”类型实例。</p>
+<p>另外像</p>
+<pre><code>Long sum=0L; 
+sum++; </code></pre><p>会导致产生一个新的Long对象（即引用变量sum　在第二次指向了一个新的 Long对象），而第一次的那个Long对象就会被回收。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/24/Java自动装箱和自动拆箱/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-github使用指南" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1197,89 +1416,6 @@ public HelloWorld(){
 
 
   
-    <article id="post-Maven工具安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/25/Maven工具安装/">Maven工具的安装</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/25/Maven工具安装/" class="archive-article-date">
-  	<time datetime="2019-09-25T07:38:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Maven工具的安装"><a href="#Maven工具的安装" class="headerlink" title="Maven工具的安装"></a>Maven工具的安装</h1><h2 id="0-下载"><a href="#0-下载" class="headerlink" title="0.下载"></a>0.下载</h2><p><a href="https://maven.apache.org/download.cgi" target="_blank" rel="noopener">安装地址</a></p>
-<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Maven%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85/installMaven.png" alt></p>
-<h2 id="1-配置环境"><a href="#1-配置环境" class="headerlink" title="1.配置环境"></a>1.配置环境</h2><p>在环境变量Path中配置<br>E:\Maven\apache-maven-3.6.2-bin(2)\apache-maven-3.6.2\bin\</p>
-<p>配置完成后，打开cmd输入</p>
-<pre><code>mvn -v</code></pre><p>将会显示</p>
-<pre><code>Apache Maven 3.6.2 (40f52333136460af0dc0d7232c0dc0bcf0d9e117; 2019-08-27T23:06:16+08:00)
-Maven home: E:\Maven\apache-maven-3.6.2-bin(2)\apache-maven-3.6.2\bin\..
-Java version: 10.0.2, vendor: Oracle Corporation, runtime: C:\Program Files\Java\jre-10.0.2
-Default locale: zh_CN, platform encoding: GBK
-OS name: &quot;windows 10&quot;, version: &quot;10.0&quot;, arch: &quot;amd64&quot;, family: &quot;windows&quot;</code></pre><p>表示配置完成</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/25/Maven工具安装/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1389,15 +1525,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1410,6 +1538,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">算法 leetcode 树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
             
             <div class="clearfix"></div>
