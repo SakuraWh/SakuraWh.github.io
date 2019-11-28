@@ -170,6 +170,224 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java反射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/27/java反射/">java反射</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/27/java反射/" class="archive-article-date">
+  	<time datetime="2019-11-27T14:30:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/27/java反射/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-详解JVM内存区域划分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/27/详解JVM内存区域划分/">详解JVM内存区域划分</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/27/详解JVM内存区域划分/" class="archive-article-date">
+  	<time datetime="2019-11-27T04:58:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、JVM内存区域"><a href="#一、JVM内存区域" class="headerlink" title="一、JVM内存区域"></a>一、JVM内存区域</h1><p>Java 虚拟机在执行 Java 程序的过程中会把他所管理的内存划分为若干个不同的数据区域。</p>
+<p>Java 虚拟机规范将 JVM 所管理的内存分为以下几个运行时数据区：<strong>程序计数器、Java 虚拟机栈、本地方法栈、Java 堆、方法区</strong>。</p>
+<p>下面详细阐述各数据区所存储的数据类型。</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/JVM%E5%88%9D%E5%AD%A6%E4%B9%A0/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%86%85%E5%AD%98%E5%88%92%E5%88%86.png" alt></p>
+<h2 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1.程序计数器"></a>1.程序计数器</h2><p>一块较小的内存空间，它是当前线程所执行的字节码的行号指示器，字节码解释器工作时通过改变该计数器的值来选择下一条需要执行的字节码指令，分支、跳转、循环等基础功能都要依赖它来实现。</p>
+<p>每条线程都有一个独立的的PC寄存器，各线程间的计数器互不影响，因此该区域是线程私有的。当线程执行Java程序时，PC寄存器的内容总是下一条将被执行的指令地址。</p>
+<p>当线程在执行一个 Java 方法时，该计数器记录的是正在执行的虚拟机字节码指令的地址，当线程在执行的是 Native 方法（调用本地操作系统方法）时，该计数器的值为空。另外，该内存区域是唯一一个在 Java 虚拟机规范中没有规定任何 OOM（内存溢出：OutOfMemoryError）情况的区域。</p>
+<h2 id="2-Java-虚拟机栈"><a href="#2-Java-虚拟机栈" class="headerlink" title="2.Java 虚拟机栈"></a>2.Java 虚拟机栈</h2><p>该区域也是线程私有的，它的生命周期也与线程相同。虚拟机栈描述的是 Java 方法执行的内存模型：每个方法被执行的时候都会同时创建一个栈帧，栈它是用于支持续虚拟机进行方法调用和方法执行的数据结构。对于执行引擎来讲，活动线程中，只有栈顶的栈帧是有效的，称为当前栈帧，这个栈帧所关联的方法称为当前方法，执行引擎所运行的所有字节码指令都只针对当前栈帧进行操作。栈帧用于存储<strong>局部变量表、操作数栈、动态链接、方法返回地址和一些额外的附加信息</strong>。</p>
+<p><strong>在编译程序代码时，栈帧中需要多大的局部变量表、多深的操作数栈都已经完全确定了</strong>，并且写入了方法表的 Code 属性之中。因此，一个栈帧需要分配多少内存，不会受到程序运行期变量数据的影响，而仅仅取决于具体的虚拟机实现。</p>
+<p>在 Java 虚拟机规范中，对这个区域规定了两种异常情况：</p>
+<ul>
+<li>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常。</li>
+<li>如果虚拟机在动态扩展栈时无法申请到足够的内存空间，则抛出OutOfMemoryError异常。</li>
+</ul>
+<p>这两种情况存在着一些互相重叠的地方：当栈空间无法继续分配时，到底是内存太小，还是已使用的栈空间太大，其本质上只是对同一件事情的两种描述而已。在单线程的操作中，无论是由于栈帧太大，还是虚拟机栈空间太小，当栈空间无法分配时，虚拟机抛出的都是 StackOverflowError 异常，而不会得到 OutOfMemoryError 异常。而在多线程环境下，则会抛出 OutOfMemoryError 异常。</p>
+<p>栈帧有三部分构成：</p>
+<ul>
+<li>局部变量区</li>
+<li>操作数栈</li>
+<li>帧数据区</li>
+</ul>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/JVM%E5%88%9D%E5%AD%A6%E4%B9%A0/java%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88.png" alt></p>
+<p>在活动线程中，只有位于栈顶的栈帧才是有效的，称为当前栈帧，与这个栈帧相关联的方法称为当前方法。</p>
+<h3 id="局部变量区"><a href="#局部变量区" class="headerlink" title="局部变量区"></a>局部变量区</h3><blockquote>
+<p>   局部变量表是一组变量值存储空间，用于存放方法参数和方法内部定义的局部变量，其中存放的数据的类型<strong>是编译期可知的各种基本数据类型、对象引用（reference）和 returnAddress 类型</strong>（它指向了一条字节码指令的地址）。</p>
+<p>   局部变量表所需的内存空间在编译期间完成分配，即在 Java 程序被编译成 Class 文件时，就确定了所需分配的最大局部变量表的容量。当进入一个方法时，这个方法需要在栈中分配多大的局部变量空间是完全确定的，在方法运行期间不会改变局部变量表的大小。</p>
+<p>局部变量表的容量以变量槽（Slot）为最小单位。在虚拟机规范中并没有明确指明一个 Slot 应占用的内存空间大小（允许其随着处理器、操作系统或虚拟机的不同而发生变化）。</p>
+<p>一个 Slot 可以存放一个32位以内的数据类型：<strong>boolean、byte、char、short、int、float、reference 和 returnAddresss。</strong>reference是对象的引用类型，returnAddress 是为字节指令服务的，它执行了一条字节码指令的地址。对于 <strong>64 位的数据类型（long和double）</strong>，虚拟机会以高位在前的方式为其分配两个连续的 Slot 空间。</p>
+<p>这些数据会被组织成以一个字长(32bit或64bit)为单位的数组结构(以索引0开始)中</p>
+<p>虚拟机通过索引定位的方式使用局部变量表，索引值的范围是从 0 开始到局部变量表最大的 Slot 数量，对于 32 位数据类型的变量，索引 n 代表第 n 个 Slot，对于 64 位的，索引 n 代表第 n 和第 n+1 两个 Slot。<br>在方法执行时，虚拟机是使用局部变量表来完成参数值到参数变量列表的传递过程的，<strong>如果是实例方法（非static），则局部变量表中的第 0 位索引的 Slot 默认是用于传递方法所属对象实例的引用，在方法中可以通过关键字“this”来访问这个隐含的参数</strong>。其余参数则按照参数表的顺序来排列，占用从1开始的局部变量 Slot，参数表分配完毕后，再根据方法体内部定义的变量顺序和作用域分配其余的 Slot。</p>
+<p>局部变量表中的 Slot 是可重用的，方法体中定义的变量，作用域并不一定会覆盖整个方法体，如果当前字节码PC计数器的值已经超过了某个变量的作用域，那么这个变量对应的 Slot 就可以交给其他变量使用。这样的设计不仅仅是为了节省空间，在某些情况下 Slot 的复用会直接影响到系统的垃圾收集行为。</p>
+</blockquote>
+<h3 id="操作数栈"><a href="#操作数栈" class="headerlink" title="操作数栈"></a>操作数栈</h3><blockquote>
+<p>用来在执行指令的时候存储和使用中间结果数据。</p>
+<p>操作数栈又常被称为操作栈，操作数栈的最大深度也是在编译的时候就确定了。32 位数据类型所占的栈容量为 1,64 位数据类型所占的栈容量为 2。当一个方法开始执行时，它的操作栈是空的，在方法的执行过程中，会有各种字节码指令（比如：加操作、赋值元算等）向操作栈中写入和提取内容，也就是入栈和出栈操作。</p>
+</blockquote>
+<h3 id="帧数据区"><a href="#帧数据区" class="headerlink" title="帧数据区"></a>帧数据区</h3><p>常量池的解析，正常方法返回以及异常派发机制的信息数据都存储在其中。</p>
+<blockquote>
+<p>每个栈帧都包含一个指向运行时常量池（在方法区中，后面介绍）中该栈帧所属方法的引用，持有这个引用是为了支持方法调用过程中的<strong>动态连接</strong>。Class 文件的常量池中存在有大量的符号引用，字节码中的方法调用指令就以常量池中指向方法的符号引用为参数。这些符号引用，一部分会在类加载阶段或第一次使用的时候转化为直接引用（如 final、static 域等），称为静态解析，另一部分将在每一次的运行期间转化为直接引用，这部分称为动态连接。</p>
+<p>当一个方法被执行后，有两种方式退出该方法：执行引擎遇到了任意一个方法返回的字节码指令或遇到了异常，并且该异常没有在方法体内得到处理。无论采用何种退出方式，在方法退出之后，都需要返回到方法被调用的位置，程序才能继续执行。方法返回时可能需要在栈帧中保存一些信息，用来帮助恢复它的上层方法的执行状态。一般来说，方法正常退出时，调用者的 PC 计数器的值就可以作为返回地址，栈帧中很可能保存了这个计数器值，而方法异常退出时，返回地址是要通过异常处理器来确定的，栈帧中一般不会保存这部分信息。</p>
+<p>方法退出的过程实际上等同于把当前栈帧出站，因此退出时可能执行的操作有：恢复上层方法的局部变量表和操作数栈，如果有返回值，则把它压入调用者栈帧的操作数栈中，调整 PC 计数器的值以指向方法调用指令后面的一条指令。</p>
+</blockquote>
+<p>详细虚拟机栈示例过程参考：<a href="https://blog.csdn.net/qian520ao/article/details/79118474" target="_blank" rel="noopener">https://blog.csdn.net/qian520ao/article/details/79118474</a></p>
+<h2 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3.本地方法栈"></a>3.本地方法栈</h2><p>该区域与虚拟机栈所发挥的作用非常相似，只是虚拟机栈为虚拟机执行 Java 方法服务，而本地方法栈则为使用到的本地操作系统（Native）方法服务。</p>
+<h2 id="4-Java-堆"><a href="#4-Java-堆" class="headerlink" title="4.Java 堆"></a>4.Java 堆</h2><p>Java堆是被所有线程共享的一块内存区域，在虚拟机启动时创建，是虚拟机所管理的内存中最大的一块，也是垃圾收集器管理的主要区域，也称为GC垃圾堆。</p>
+<p>此内存区域的唯一目的就是【<strong>存放对象实例和数组（new出来的对象）</strong>】，几乎所有的对象实例和数组都在这里分配内存。</p>
+<p>如果在堆中没有内存完成实例分配，并且堆上也无法再扩展时，将会抛出OutOfMemoryError异常。</p>
+<ul>
+<li>内存泄露 ： 指程序中动态分配内存给一些临时对象，但是对象不会被GC所回收，它始终占用内存。即被分配的对象可达但已无用，可用内存越来越少。</li>
+<li>内存溢出 ： 指程序运行过程中无法申请到足够的内存而导致的一种错误。内存溢出通常发生于老年代或永久代垃圾回收后，仍然无内存空间容纳新的Java对象的情况。</li>
+</ul>
+<p>内存泄露是内存溢出的一种诱因，不是唯一因素。</p>
+<p>详细转到：<a href="http://x" target="_blank" rel="noopener">详解Java堆和GC机制</a></p>
+<h2 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5.方法区"></a>5.方法区</h2><p> 方法区里存的都是类型信息，也就是类的信息，而类的信息又包括以下内容：</p>
+<ul>
+<li>类的全限定名(类的全路径名) </li>
+<li>类的直接超类的全限定名(如果这个类是Object,则它没有超类) </li>
+<li>这个类是类型(类)还是接口 </li>
+<li>类的访问修饰符,如public、abstract、final等 </li>
+<li>所有的直接接口全限定名的有序列表(假如它实现了多个接口) </li>
+<li>常量池 </li>
+<li>字段、方法信息、类变量信息(静态变量) </li>
+<li>装载该类的装载器的引用(classLoader)、类型引用(class) </li>
+</ul>
+<p>方法区说明：</p>
+<ol>
+<li><p>方法区又被称为静态区，是程序中永远唯一的元素存储区域。和堆一样，是各个线程共享的内存区域。它用于存储已被虚拟机加载的<strong>类信息、常量、静态变量、即时编译器编译后的代码等数据。</strong></p>
+</li>
+<li><p>Java虚拟机规范对方法区的限制非常宽松，除了和Java堆一样 不需要连续的内存和可以选择固定大小或者可扩展之外，还可以选择不实现垃圾回收。<br>这区域的内存回收目标主要是针对常量池的回收和类型的卸载，一般而言，这个区域的内存回收比较难以令人满意，尤其是类型的回收，条件相当苛刻，但是这部分区域的内存回收确实是必要的。</p>
+</li>
+<li><p>很多开发者更愿意把方法区称为“永久代”(Perm Gen)(Permanent Generation)「总是存放不会轻易改变的内容」。在目前已经发布的JDK 1.7 的HotSpot中，已经把原本放在永久代的字符串常量池移至堆中。</p>
+</li>
+<li><p>运行时常量池(Runtime Constant Pool)是方法区的一部分。常量池参考：<a href="https://www.cnblogs.com/syp172654682/p/8082625.html" target="_blank" rel="noopener">https://www.cnblogs.com/syp172654682/p/8082625.html</a></p>
+</li>
+</ol>
+<blockquote>
+<p>JDK 1.8 中，已经没有方法区(永久代)，而是将方法区直接放在一个与堆不相连的本地内存区域(Native Memory)，这个区域被叫做元空间。</p>
+</blockquote>
+<h2 id="6-举个例子"><a href="#6-举个例子" class="headerlink" title="6.举个例子"></a>6.举个例子</h2><p>对内存分配情况分析最常见的示例便是对象实例化:</p>
+<pre><code>Object obj = new Object();</code></pre><p>这段代码的执行会涉及 Java 栈、Java 堆、方法区三个最重要的内存区域。</p>
+<p>假设该语句出现在方法体中，obj会作为引用类型（reference）的数据保存在 Java 栈的局部变量表中，而会在 Java 堆中保存该引用的实例化对象，Java 堆中还必须包含能查找到此对象类型数据的地址信息（如对象类型、父类、实现的接口、方法等），这些类型数据则保存在方法区中。</p>
+<hr>
+<p>参考：<a href="http://wiki.jikexueyuan.com/project/java-vm/storage.html" target="_blank" rel="noopener">http://wiki.jikexueyuan.com/project/java-vm/storage.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java jvm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/27/详解JVM内存区域划分/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java参数传递" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -961,8 +1179,62 @@ public int[] twoSum(int[] numbers, int target) {
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这两天早上上着班，不能用电脑，所以就看看基础知识，做了点笔记记录一下</p>
-<p><a href="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/head.jpeg" target="_blank" rel="noopener"></a></p>
+        <h1 id="一、java核心机制"><a href="#一、java核心机制" class="headerlink" title="一、java核心机制"></a>一、java核心机制</h1><p>java有两种核心机制：</p>
+<ul>
+<li>java虚拟机(JavaVirtual Machine)</li>
+<li>垃圾收集机制(Garbage collection)</li>
+</ul>
+<p><strong>Java虚拟机</strong>：是运行所有Java程序的抽象计算机，是Java语言的运行环境，在其上面运行Java代码编译后的字节码程序，java虚拟机实现了平台无关性。</p>
+<p><strong>Java垃圾回收</strong>：自动释放不用对象内存空间，在java程序运行过程中自动进行，垃圾收集机制可大大缩短编程时间，保护程序的完整性，是Java语言安全性策略的一个重要部份。</p>
+<hr>
+<h1 id="二、java虚拟机及其结构"><a href="#二、java虚拟机及其结构" class="headerlink" title="二、java虚拟机及其结构"></a>二、java虚拟机及其结构</h1><p>参考：<a href="http://wiki.jikexueyuan.com/project/java-vm/overwise.html" target="_blank" rel="noopener">http://wiki.jikexueyuan.com/project/java-vm/overwise.html</a></p>
+<p>java虚拟机承载着程序从源码到运行的全部工作。 </p>
+<p>Java虚拟机是可运行Java代码的<strong>假想计算机</strong>，有自己<strong>想象中的硬件</strong>，如<strong>处理器、堆栈、寄存器</strong>等，还具有相应的<strong>指令系统</strong>，可以执行 Java 的字节码程序。Java语言的一个非常重要的特点就是与<strong>平台的无关性</strong>。而使用Java虚拟机是实现这一特点的关键。</p>
+<p>Java语言使用模式Java虚拟机屏蔽了与具体平台相关的信息，使得Java语言编译程序只需生成在Java虚拟机上运行的目标代码（字节码），就可以在多种平台上不加修改地运行。Java虚拟机在<strong>执行字节码</strong>时，把字节码解释成具体平台上的机器指令执行。</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/JVM%E5%88%9D%E5%AD%A6%E4%B9%A0/2.png" alt="jvm结构"></p>
+<p>这里简要说明java虚拟机概念，详细转到：</p>
+<p><a href="https://www.iteye.com/blog/hxraid-676235" target="_blank" rel="noopener">深入理解JVM</a></p>
+<hr>
+<h1 id="三、GC机制"><a href="#三、GC机制" class="headerlink" title="三、GC机制"></a>三、GC机制</h1><p>这里简要说明GC机制，详细转到：</p>
+<p><a href="http://www.baidu.com" target="_blank" rel="noopener">深入理解GC</a></p>
+<hr>
+<h1 id="四、类加载的机制的层次结构"><a href="#四、类加载的机制的层次结构" class="headerlink" title="四、类加载的机制的层次结构"></a>四、类加载的机制的层次结构</h1><p>Java程序执行分为以下步骤：</p>
+<ol>
+<li>我们编写的逻辑代码存储在”.java”文件下，文件经过Java编译器<strong>编译</strong>成拓展名为”.class”的字节码文件。</li>
+<li>“.class”文件中保存着Java代码经转换后的<strong>虚拟机指令</strong>，当需要使用某个类时，虚拟机将会加载它的”.class”文件，并创建对应的class对象，将class文件加载到虚拟机的内存，这个过程称为类加载</li>
+</ol>
+<p>这里我们了解一下类加载的过程，如下：</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/JVM%E5%88%9D%E5%AD%A6%E4%B9%A0/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.png" alt="类加载过程"></p>
+<p>JVM将类加载过程分成<strong>加载，链接，初始化</strong>三个阶段，其中链接阶段又可分为<strong>验证，准备，解析</strong>三个阶段。</p>
+<ul>
+<li>加载：通过一个类的完全限定查找此类字节码文件，并利用字节码文件创建一个Class对象</li>
+</ul>
+<ul>
+<li><p>验证：目的在于确保Class文件的字节流中包含信息符合当前虚拟机要求，不会危害虚拟机自身安全。主要包括四种验证，文件格式验证，元数据验证，字节码验证，符号引用验证。</p>
+</li>
+<li><p>准备：为类变量(即static修饰的字段变量)分配内存并且设置该类变量的初始值即0，这里所设置的初始值通常情况下是数据类型默认的零值（如 0、0L、null、false 等）；这里不包含用final修饰的static，因为final在编译的时候就会分配了，注意这里不会为实例变量分配初始化，类变量会分配在方法区中，而实例变量是会随着对象一起分配到Java堆中。</p>
+</li>
+<li><p>解析：主要将常量池中的符号引用替换为直接引用的过程。符号引用就是一组符号来描述目标，可以是任何字面量，而直接引用就是直接指向目标的指针、相对偏移量或一个间接定位到目标的句柄。有类或接口的解析，字段解析，类方法解析，接口方法解析(这里涉及到字节码变量的引用)。</p>
+</li>
+<li><p>初始化：类加载最后阶段，若该类具有超类，则对其进行初始化，执行静态初始化器和静态初始化成员变量(如前面只初始化了默认值的static变量将会在这个阶段赋值，成员变量也将被初始化)。</p>
+</li>
+</ul>
+<p>参考：<a href="https://blog.csdn.net/u012585964/article/details/52011138" target="_blank" rel="noopener">https://blog.csdn.net/u012585964/article/details/52011138</a></p>
+<h1 id="五、反射的概念"><a href="#五、反射的概念" class="headerlink" title="五、反射的概念"></a>五、反射的概念</h1><p>在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。</p>
+<p>为何被称为动态机制：<strong>Java程序可以加载一个运行时才得知名称的class</strong>，获悉其完整构造（但不包括methods定义），并生成其对象实体、或对其fields设值、或唤起其methods。</p>
+<p>反射机制的功能：</p>
+<ul>
+<li>在运行时判断任意一个对象所属的类；（已知对象，得到类名）</li>
+<li>在运行时构造任意一个类的对象；（已知类名，得对象）</li>
+<li>在运行时判断任意一个类所具有的成员变量和方法；（已知类名，得变量及方法）</li>
+<li>在运行时调用任意一个对象的方法；（已知对象，得方法）</li>
+<li>生成动态代理。</li>
+</ul>
+<p>Java有个Object 类，是所有Java 类的继承根源，其内声明了数个应该在所有Java 类中被改写的方法：hashCode()、equals()、clone()、toString()、getClass()等。其中getClass()返回一个Class 对象。</p>
+<p>Class 类十分特殊。它和一般类一样继承自Object，其实体用以表达Java程序运行时的classes和interfaces，也用来表达enum、array、primitive Java types（boolean, byte, char, short, int, long, float, double）以及关键词void。当一个class被加载，或当加载器（class loader）的defineClass()被JVM调用，JVM 便自动产生一个Class 对象。</p>
+<p>总得来说，类是用来描述对象一般性质的抽象表达，那么Class对象就是用来描述一个类的抽象表达，可以形容类的状态、类型、返回值等。</p>
+<p>反射机制允许程序在正在执行的过程中，利用反射机制APIs取得任何已知名称的类的内部信息，包括：<strong>package、 type parameters、 superclass、 implemented interfaces、 inner classes、 outer classes、 fields、 constructors、 methods、 modifiers</strong>等，并可以在执行的过程中，<strong>动态生成instances、变更fields内容或唤起methods。</strong></p>
+<p>转到：<a href="https://blog.csdn.net/u012585964/article/details/52011138" target="_blank" rel="noopener">详解Class类</a></p>
 
       
 
@@ -1208,190 +1480,6 @@ Person{name=&apos;张三&apos;, age=12, hight=170}</code></pre><h2 id="集合注
 
 
   
-    <article id="post-创建腾讯图床用于解决Hexo框架下md文件图片显示问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/05/创建腾讯图床用于解决Hexo框架下md文件图片显示问题/">创建腾讯图床用于解决Hexo框架下md文件图片显示问题</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/05/创建腾讯图床用于解决Hexo框架下md文件图片显示问题/" class="archive-article-date">
-  	<time datetime="2019-10-04T17:01:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这两天本来想更新Spring学习的博客，昨晚在写完IOC的博客之后，Markdown文件下图片的引用出现了问题，找了挺多解决方案，差点给我整自闭了，记录一下。</p>
-<p>传统的MarkDown文件下引用图片的方式是</p>
-<blockquote>
-<p>！[名称]{本地连接}</p>
-</blockquote>
-<p>但是少量图片还好说，图片一多，就不好管理了，昨天更新博客时突然不能插入图片了，所以我查了挺多方法，最后决定通过搭建图床的方式来进行图片储存。</p>
-<p>图床就是一个放在网上储存图片的东西。</p>
-<h2 id="1-注册腾讯云COS"><a href="#1-注册腾讯云COS" class="headerlink" title="1.注册腾讯云COS"></a>1.注册腾讯云COS</h2><p><a href="https://console.cloud.tencent.com/" target="_blank" rel="noopener">下载链接</a></p>
-<p>然后直接用自己QQ号完成注册好了，这个好像是先免费半年，之后就要收费了，虽然很想白嫖，但是这样起码省心点，毕竟腾讯，大树底下好乘凉，也许半年后我就能找到工作了，给它续费。</p>
-<h2 id="2-下载COSBrower"><a href="#2-下载COSBrower" class="headerlink" title="2.下载COSBrower"></a>2.下载COSBrower</h2><p>注册完毕后下载COSBrower，就是上传图片的桌面应用。</p>
-<p><a href="https://cloud.tencent.com/developer/article/1181547" target="_blank" rel="noopener">下载链接</a></p>
-<p>下载后安装，登录时候的id和密码在腾讯云上的</p>
-<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/%E5%88%9B%E5%BB%BA%E8%85%BE%E8%AE%AF%E5%9B%BE%E5%BA%8A%E7%94%A8%E4%BA%8E%E8%A7%A3%E5%86%B3Hexo%E6%A1%86%E6%9E%B6%E4%B8%8Bmd%E6%96%87%E4%BB%B6%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/1.PNG" alt></p>
-<h2 id="3-配置使用"><a href="#3-配置使用" class="headerlink" title="3.配置使用"></a>3.配置使用</h2><p>然后就拖拽创建对应目录，完成好之后，再根据大概这个格式</p>
-<pre><code>https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/创建腾讯图床用于解决Hexo框架下md文件图片显示问题/1.PNG</code></pre><p>这个样子的链接放在md文件中，就可以实现图床链接了。</p>
-<h2 id="4-多说一句"><a href="#4-多说一句" class="headerlink" title="4.多说一句"></a>4.多说一句</h2><p>半夜一点了，该睡觉了，博客写的有点敷衍，详细步骤就那样，摸索摸索，或者问我也行就这样8。</p>
-<p>放假了在家有些懈怠学习，果然学校才是最好的，希望我能认真学习，有效利用放假时间，加油！</p>
-<p>晚安。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/05/创建腾讯图床用于解决Hexo框架下md文件图片显示问题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring学习笔记：IOC&amp;DI" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/03/Spring学习笔记：IOC&DI/">Spring学习笔记：IOC&amp;DI</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/03/Spring学习笔记：IOC&DI/" class="archive-article-date">
-  	<time datetime="2019-10-03T08:42:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>要了解Spring框架，我们首先要了解其基本思想IOC&amp;DI</p>
-<h2 id="什么是IOC-amp-DI？"><a href="#什么是IOC-amp-DI？" class="headerlink" title="什么是IOC &amp; DI？"></a>什么是IOC &amp; DI？</h2><p>根据百度百科给出的定义：</p>
-<blockquote>
-<p>控制反转（Inversion of Control，缩写为IoC），是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。其中最常见的方式叫做依赖注入（Dependency Injection，简称DI）。</p>
-</blockquote>
-<p>当我们完成一个项目时，不同的模块与类之间相互合作，互相依赖，这时当我们需要单独使用其中一个类时，由于过高的耦合性，导致模块的功能无法正常实现，出现各种无法预知的问题。</p>
-<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/1.PNG" alt></p>
-<p>IOC是一种设计思想（原则），观点大致是借助“第三方”实现依赖关系之间的解耦，如下图：</p>
-<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/2.PNG" alt></p>
-<p>图中“第三方”就是IOC容器，让A、B、C、D不再具有耦合关系，全部的控制权都在“第三方”IOC容器，如果去掉IOC容器，对象与对象之间就会失去联系。</p>
-<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/3.PNG" alt></p>
-<p>此时，对于每个单独的对象来说，已经没有了耦合关系，当实现A时就无需考虑B、C、D了，而为了在系统中使用B对象，传统方式是由A对象主动地创建B对象获取直接控制；而对于IOC来说，就是通过IOC容器来创建B对象，再将B对象注入到A对象需要的地方。</p>
-<p>这样A依赖B的过程就变成了<strong>被动</strong>的方式，这就叫“<strong>控制反转</strong>”。</p>
-<p>依赖注入DI是反转控制的另一种表达方式，指的是组件以预先定义好的方式（<strong>setter方法</strong>）来接受来自容器的资源注入。</p>
-<hr>
-<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/4.PNG" alt></p>
-<p>项目通过配置xml文件中的对象属性，在执行程序时由IOC容器的将其注入</p>
-<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIOC&DI/5.PNG" alt></p>
-<p>具体就是通过IOC容器，根据xml文件中提供的配置，将对象定义好后，再通过预设好的set方法将对应的属性值进行注入，这样就实现了对象无需再被主动创建，而是由IOC容器创建完成后，用到的时候再从IOC容器中接收即可。</p>
-<p>文章参考：<a href="https://blog.csdn.net/ivan820819/article/details/79744797" target="_blank" rel="noopener">https://blog.csdn.net/ivan820819/article/details/79744797</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/03/Spring学习笔记：IOC&DI/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1497,15 +1585,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java 参数传递</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1513,7 +1593,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1521,7 +1605,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">算法 leetcode 树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1529,7 +1617,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">算法 leetcode 树</a>
+                <a href="javascript:void(0)" class="js-tag color5">java 参数传递</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Java jvm</a>
               </li>
             
             <div class="clearfix"></div>
