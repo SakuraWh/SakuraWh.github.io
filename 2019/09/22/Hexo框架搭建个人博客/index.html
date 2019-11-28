@@ -17,7 +17,10 @@
 <meta property="og:description" content="Hexo框架搭建个人博客准备工作： 1.注册一个Github账号 参考github教程这里不多赘述 2.安装Node.js 下载地址 3.下载git工具 下载地址  安装Hexo： git和Node.js安装好后，创建一个存放博客的文件夹，如MyBlog，然后进入blog文件夹，选中空白处鼠标右键，选择git bash here，弹出gitBash窗口； 执行命令 安装npm npm i-g he">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Hexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/creatSSHkey.jpeg">
-<meta property="og:updated_time" content="2019-11-11T09:16:59.838Z">
+<meta property="og:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Hexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png">
+<meta property="og:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Hexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/githubsetting.png">
+<meta property="og:image" content="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Hexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/cname%E8%AE%BE%E7%BD%AE.png">
+<meta property="og:updated_time" content="2019-11-28T06:38:18.287Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo框架搭建个人博客">
 <meta name="twitter:description" content="Hexo框架搭建个人博客准备工作： 1.注册一个Github账号 参考github教程这里不多赘述 2.安装Node.js 下载地址 3.下载git工具 下载地址  安装Hexo： git和Node.js安装好后，创建一个存放博客的文件夹，如MyBlog，然后进入blog文件夹，选中空白处鼠标右键，选择git bash here，弹出gitBash窗口； 执行命令 安装npm npm i-g he">
@@ -233,7 +236,19 @@ hexo d                # 部署
 hexo g -d             # 生成页面并部署
 hexo s                # 本地预览
 hexo clean            # 清除缓存和已生成的静态文件
-hexo help             # 帮助</code></pre>
+hexo help             # 帮助</code></pre><p><strong>连接到个人域名</strong></p>
+<p>11/28日更新</p>
+<p><em>今天在qq空间看见腾讯云在卖域名，一年只要1块钱（新人礼包），于是就买了一个，中午没事儿就连接了一下。</em></p>
+<p>首先按腾讯云发的消息将域名实名认证之后解析。<br><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Hexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png" alt></p>
+<p>按照如下配置两个记录 其中第二条185.199.109.153为你的username.github.io的ip地址，你可以通过win+r进入cmd界面 ping username.github.io获得。</p>
+<p>然后进入github，进入你的github.io项目仓库，点击setting</p>
+<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Hexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/githubsetting.png" alt></p>
+<p>下拉设置你的Custom domain为你买的域名。</p>
+<p>如果上方绿色区域提示你无法解析dns你会腾讯云看看是否都配置完成。（可能是还在认证，刷新腾讯云查看解析是否成功）</p>
+<p>最后将在你的blog文件夹根目录/source下新建CNAME文件，无后缀，内容是你的域名。<br><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/Hexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/cname%E8%AE%BE%E7%BD%AE.png" alt></p>
+<p>再运行git bash进行hexo g -d生成并上传部署即可。</p>
+<p>在浏览器上方输入<a href="www.wanghua.xyz">www.wanghua.xyz</a>就能进入博客了</p>
+
       
 
       
@@ -453,19 +468,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java 装箱 拆箱</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -473,11 +476,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
+                <a href="javascript:void(0)" class="js-tag color1">java 装箱 拆箱</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java 参数传递</a>
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -489,11 +492,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">算法 leetcode 数组</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">算法 leetcode 树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java 参数传递</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
