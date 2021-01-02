@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>��ǩ | Welcome to SakuraWh Blog</title>
+  <title>C with STL | Welcome to SakuraWh Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SakuraWh的个人博客，主要涉及编程（Java），个人提升学习，记录学习笔记。">
-<meta name="keywords" content="SakuraWh，王华，java，学习，笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="��ǩ">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+  <meta name="description" content="目录 基础使用 c标准库  c++标准库  常用数据类型 int  char  bool  char*  string(include string)输入输出 cin&amp;gt;&amp;gt; cout&amp;lt;&amp;lt;读取 cin.get();                读一个 getline(cin,A);            读一行 cin.getline(*c,1000);    读一行（字符数">
+<meta name="keywords" content="ACM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C with STL">
+<meta property="og:url" content="http://yoursite.com/2021/01/02/C with STL/index.html">
 <meta property="og:site_name" content="Welcome to SakuraWh Blog">
-<meta property="og:description" content="SakuraWh的个人博客，主要涉及编程（Java），个人提升学习，记录学习笔记。">
+<meta property="og:description" content="目录 基础使用 c标准库  c++标准库  常用数据类型 int  char  bool  char*  string(include string)输入输出 cin&amp;gt;&amp;gt; cout&amp;lt;&amp;lt;读取 cin.get();                读一个 getline(cin,A);            读一行 cin.getline(*c,1000);    读一行（字符数">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-30T09:19:40.436Z">
+<meta property="og:updated_time" content="2021-01-02T10:51:33.060Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="��ǩ">
-<meta name="twitter:description" content="SakuraWh的个人博客，主要涉及编程（Java），个人提升学习，记录学习笔记。">
+<meta name="twitter:title" content="C with STL">
+<meta name="twitter:description" content="目录 基础使用 c标准库  c++标准库  常用数据类型 int  char  bool  char*  string(include string)输入输出 cin&amp;gt;&amp;gt; cout&amp;lt;&amp;lt;读取 cin.get();                读一个 getline(cin,A);            读一行 cin.getline(*c,1000);    读一行（字符数">
   
     <link rel="alternative" href="/atom.xml" title="Welcome to SakuraWh Blog" type="application/atom+xml">
   
@@ -169,27 +169,167 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-C with STL" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      ��ǩ
+      C with STL
     </h1>
   
 
         
-        <a href="/tags/index.html" class="archive-article-date">
-  	<time datetime="2019-04-24T07:40:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-24</time>
+        <a href="/2021/01/02/C with STL/" class="archive-article-date">
+  	<time datetime="2021-01-02T10:51:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li>基础使用</li>
+<li>c标准库 </li>
+<li>c++标准库</li>
+</ul>
+<p><strong>常用数据类型</strong></p>
+<pre><code>int 
+char 
+bool 
+char* 
+string(include string)</code></pre><p><strong>输入输出</strong></p>
+<pre><code>cin&gt;&gt;
+cout&lt;&lt;</code></pre><p><strong>读取</strong></p>
+<pre><code>cin.get();                读一个
+getline(cin,A);            读一行
+cin.getline(*c,1000);    读一行（字符数组）</code></pre><p><strong>判断EOF</strong></p>
+<pre><code>int a；
+while(cin&gt;&gt; a)
+{
+}</code></pre><p><strong>动态开辟内存</strong></p>
+<pre><code>int* a= new int[100];
+delete[] a;</code></pre><p><strong>结构体</strong></p>
+<pre><code>struct node{
+    int number;
+    node* next;
+    node(int _number = 0,noide* _next = NULL)
+    {
+        number = _number;
+        next = _next;
+    }
+}
+node a = node();
+node* b = new node(1,$a);</code></pre><p><strong>细节</strong></p>
+<pre><code>无穷大 const int INF = 0x3f3f3f3f;</code></pre><hr>
+<hr>
+<h1 id="c标准库"><a href="#c标准库" class="headerlink" title="c标准库"></a>c标准库</h1><pre><code>&lt;cstring&gt;
+    strlen()                    字符串长度
+    strcmp()                    字符串比较
+    strcpy()                    字符串拷贝
+    memset(str，0，sizeof(str))    暴力清空
+    memcpy()                    暴力拷贝
+
+&lt;cmath&gt;
+    三角函数，指数函数，浮点取整函数
+
+&lt;cstdlib&gt;
+    qsort()C语言快排
+    rand()随机数
+    malloc()free()动态分配
+
+&lt;cctype&gt;
+    isdigit(),isalpha() 判断字符是否为数字，大小写字母</code></pre><h1 id="c-标准库"><a href="#c-标准库" class="headerlink" title="c++标准库"></a>c++标准库</h1><h2 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h2><pre><code>&lt;vector&gt;
+    vector&lt;int&gt; arr(100);//数组
+
+    vector&lt;int&gt; list;//链表
+    list.push_back(1);
+
+    //迭代器
+    vector&lt;int&gt;::iterator p1;
+    for(p1=arr.begin();p1!=arr.end();p1++)
+        cout&lt;&lt;*p1&lt;&lt;endl
+
+    //函数
+    size();
+    clear();
+    empty();
+    begin();
+    end();
+    erase(p1);        //删除对应迭代器位置数字O(n)
+    push_back(1);    //O(1)
+    pop_back();        //O(1)</code></pre><h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><pre><code>&lt;string&gt;
+    char str[] = &quot;hello&quot;;
+    string str = &quot;hello&quot;;
+    string str;
+    str.push_back(&apos;!&apos;);
+
+    //函数
+    length();size();    //O(n)
+    insert(1,&quot;aaa&quot;);    //O(n)
+    insert(str.begin(),&quot;a&quot;);    //O(n)
+    c_str();        //返回c字符串
+    append(str);    //拼接
+    compare(str);    //对比    
+    str += &quot;a&quot;;</code></pre><h2 id="algorithm"><a href="#algorithm" class="headerlink" title="algorithm"></a>algorithm</h2><pre><code>&lt;algorithm&gt;
+    sort(arr,arr+5);    //O(nlogn)
+    sort(arr.begin(),arr.end(),cmp);    //O(nlogn)
+    int cmp(int a,int b){    //重新定义排序方向
+        return a &gt; b;
+    }
+
+    min(1,2);
+    max(1,2);
+
+    nth_element(arr.begin(),arr.begin()+n,arr.end());//数组第n个位置排序结果是谁 1次快排结果
+
+    unique();//它会把重复的元素添加到容器末尾（所以数组大小并没有改变），而返回值是去重之后的尾地址
+    sz = unique(a,a + n) - a;
+
+    bool isExist = binary_search(arr.begin(),arr.end(),1);//二分查找是否存在
+    lower_bound(arr.begin(),arr.end(),1)-arr.begin();//二分查找可以插入最开始位置
+    upper_bound(arr.begin(),arr.end(),1)-arr.begin();//二分查找可以插入最开始位置</code></pre><h2 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h2><pre><code>&lt;queue&gt;
+    queue&lt;int&gt; que;//队列
+        push()
+        pop()
+        front()
+        empty()
+        size()
+
+    priority_queue&lt;int&gt; que;//优先队列</code></pre><h2 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h2><pre><code>&lt;queue&gt;
+    stack&lt;int&gt; sta;//栈
+        push()
+        pop()
+        top()
+        empty()
+        size()</code></pre><h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><pre><code>&lt;set&gt;
+    set&lt;int&gt; st;
+        insert(1);
+        find(1);
+        erase(1);
+    multiset&lt;int&gt; mst;
+        insert(1);
+        count(1);//插入次数
+
+&lt;unordered_map&gt;//基于哈希</code></pre><h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><pre><code>&lt;map&gt;
+    pair&lt;int,int&gt; origin;
+    origin = make_pair(0,0);
+    origin.first == origin.second;
+    origin.swap;
+
+    map&lt;string,int&gt; s;
+    =    {
+            {&quot;&quot;,1},
+            {&quot;&quot;,2}
+        };
+        insert(s);
+        erase(&quot;string&quot;);
+
+&lt;unordered_map&gt;//基于哈希</code></pre><h2 id="bitset"><a href="#bitset" class="headerlink" title="bitset"></a>bitset</h2><pre><code>&lt;bitset&gt;    //01构成的数组
+    bitset&lt;1000&gt; bst;
+    bst[0]=1;</code></pre><h2 id="bits-stdc"><a href="#bits-stdc" class="headerlink" title="bits/stdc++"></a>bits/stdc++</h2><pre><code>#include&lt;bits/stdc++.h&gt;
+省去记忆烦恼</code></pre><h2 id="STL文档"><a href="#STL文档" class="headerlink" title="STL文档"></a>STL文档</h2><pre><code>http://www.cplusplus.com/reference/</code></pre>
       
 
       
@@ -197,6 +337,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -247,7 +398,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/tags/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/01/02/C with STL/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -259,6 +410,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/30/近期学习路线/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">近期学习路线</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -309,7 +470,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

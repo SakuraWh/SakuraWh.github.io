@@ -170,6 +170,219 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-C with STL" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/02/C with STL/">C with STL</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/02/C with STL/" class="archive-article-date">
+  	<time datetime="2021-01-02T10:51:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li>基础使用</li>
+<li>c标准库 </li>
+<li>c++标准库</li>
+</ul>
+<p><strong>常用数据类型</strong></p>
+<pre><code>int 
+char 
+bool 
+char* 
+string(include string)</code></pre><p><strong>输入输出</strong></p>
+<pre><code>cin&gt;&gt;
+cout&lt;&lt;</code></pre><p><strong>读取</strong></p>
+<pre><code>cin.get();                读一个
+getline(cin,A);            读一行
+cin.getline(*c,1000);    读一行（字符数组）</code></pre><p><strong>判断EOF</strong></p>
+<pre><code>int a；
+while(cin&gt;&gt; a)
+{
+}</code></pre><p><strong>动态开辟内存</strong></p>
+<pre><code>int* a= new int[100];
+delete[] a;</code></pre><p><strong>结构体</strong></p>
+<pre><code>struct node{
+    int number;
+    node* next;
+    node(int _number = 0,noide* _next = NULL)
+    {
+        number = _number;
+        next = _next;
+    }
+}
+node a = node();
+node* b = new node(1,$a);</code></pre><p><strong>细节</strong></p>
+<pre><code>无穷大 const int INF = 0x3f3f3f3f;</code></pre><hr>
+<hr>
+<h1 id="c标准库"><a href="#c标准库" class="headerlink" title="c标准库"></a>c标准库</h1><pre><code>&lt;cstring&gt;
+    strlen()                    字符串长度
+    strcmp()                    字符串比较
+    strcpy()                    字符串拷贝
+    memset(str，0，sizeof(str))    暴力清空
+    memcpy()                    暴力拷贝
+
+&lt;cmath&gt;
+    三角函数，指数函数，浮点取整函数
+
+&lt;cstdlib&gt;
+    qsort()C语言快排
+    rand()随机数
+    malloc()free()动态分配
+
+&lt;cctype&gt;
+    isdigit(),isalpha() 判断字符是否为数字，大小写字母</code></pre><h1 id="c-标准库"><a href="#c-标准库" class="headerlink" title="c++标准库"></a>c++标准库</h1><h2 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h2><pre><code>&lt;vector&gt;
+    vector&lt;int&gt; arr(100);//数组
+
+    vector&lt;int&gt; list;//链表
+    list.push_back(1);
+
+    //迭代器
+    vector&lt;int&gt;::iterator p1;
+    for(p1=arr.begin();p1!=arr.end();p1++)
+        cout&lt;&lt;*p1&lt;&lt;endl
+
+    //函数
+    size();
+    clear();
+    empty();
+    begin();
+    end();
+    erase(p1);        //删除对应迭代器位置数字O(n)
+    push_back(1);    //O(1)
+    pop_back();        //O(1)</code></pre><h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><pre><code>&lt;string&gt;
+    char str[] = &quot;hello&quot;;
+    string str = &quot;hello&quot;;
+    string str;
+    str.push_back(&apos;!&apos;);
+
+    //函数
+    length();size();    //O(n)
+    insert(1,&quot;aaa&quot;);    //O(n)
+    insert(str.begin(),&quot;a&quot;);    //O(n)
+    c_str();        //返回c字符串
+    append(str);    //拼接
+    compare(str);    //对比    
+    str += &quot;a&quot;;</code></pre><h2 id="algorithm"><a href="#algorithm" class="headerlink" title="algorithm"></a>algorithm</h2><pre><code>&lt;algorithm&gt;
+    sort(arr,arr+5);    //O(nlogn)
+    sort(arr.begin(),arr.end(),cmp);    //O(nlogn)
+    int cmp(int a,int b){    //重新定义排序方向
+        return a &gt; b;
+    }
+
+    min(1,2);
+    max(1,2);
+
+    nth_element(arr.begin(),arr.begin()+n,arr.end());//数组第n个位置排序结果是谁 1次快排结果
+
+    unique();//它会把重复的元素添加到容器末尾（所以数组大小并没有改变），而返回值是去重之后的尾地址
+    sz = unique(a,a + n) - a;
+
+    bool isExist = binary_search(arr.begin(),arr.end(),1);//二分查找是否存在
+    lower_bound(arr.begin(),arr.end(),1)-arr.begin();//二分查找可以插入最开始位置
+    upper_bound(arr.begin(),arr.end(),1)-arr.begin();//二分查找可以插入最开始位置</code></pre><h2 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h2><pre><code>&lt;queue&gt;
+    queue&lt;int&gt; que;//队列
+        push()
+        pop()
+        front()
+        empty()
+        size()
+
+    priority_queue&lt;int&gt; que;//优先队列</code></pre><h2 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h2><pre><code>&lt;queue&gt;
+    stack&lt;int&gt; sta;//栈
+        push()
+        pop()
+        top()
+        empty()
+        size()</code></pre><h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><pre><code>&lt;set&gt;
+    set&lt;int&gt; st;
+        insert(1);
+        find(1);
+        erase(1);
+    multiset&lt;int&gt; mst;
+        insert(1);
+        count(1);//插入次数
+
+&lt;unordered_map&gt;//基于哈希</code></pre><h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><pre><code>&lt;map&gt;
+    pair&lt;int,int&gt; origin;
+    origin = make_pair(0,0);
+    origin.first == origin.second;
+    origin.swap;
+
+    map&lt;string,int&gt; s;
+    =    {
+            {&quot;&quot;,1},
+            {&quot;&quot;,2}
+        };
+        insert(s);
+        erase(&quot;string&quot;);
+
+&lt;unordered_map&gt;//基于哈希</code></pre><h2 id="bitset"><a href="#bitset" class="headerlink" title="bitset"></a>bitset</h2><pre><code>&lt;bitset&gt;    //01构成的数组
+    bitset&lt;1000&gt; bst;
+    bst[0]=1;</code></pre><h2 id="bits-stdc"><a href="#bits-stdc" class="headerlink" title="bits/stdc++"></a>bits/stdc++</h2><pre><code>#include&lt;bits/stdc++.h&gt;
+省去记忆烦恼</code></pre><h2 id="STL文档"><a href="#STL文档" class="headerlink" title="STL文档"></a>STL文档</h2><pre><code>http://www.cplusplus.com/reference/</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/02/C with STL/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-近期学习路线" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1423,135 +1636,6 @@ public int[] twoSum(int[] numbers, int target) {
 
 
   
-    <article id="post-JVM初学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/12/JVM初学习/">JVM初学习</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/12/JVM初学习/" class="archive-article-date">
-  	<time datetime="2019-10-12T11:22:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一、java核心机制"><a href="#一、java核心机制" class="headerlink" title="一、java核心机制"></a>一、java核心机制</h1><p>java有两种核心机制：</p>
-<ul>
-<li>java虚拟机(JavaVirtual Machine)</li>
-<li>垃圾收集机制(Garbage collection)</li>
-</ul>
-<p><strong>Java虚拟机</strong>：是运行所有Java程序的抽象计算机，是Java语言的运行环境，在其上面运行Java代码编译后的字节码程序，java虚拟机实现了平台无关性。</p>
-<p><strong>Java垃圾回收</strong>：自动释放不用对象内存空间，在java程序运行过程中自动进行，垃圾收集机制可大大缩短编程时间，保护程序的完整性，是Java语言安全性策略的一个重要部份。</p>
-<hr>
-<h1 id="二、java虚拟机及其结构"><a href="#二、java虚拟机及其结构" class="headerlink" title="二、java虚拟机及其结构"></a>二、java虚拟机及其结构</h1><p>参考：<a href="http://wiki.jikexueyuan.com/project/java-vm/overwise.html" target="_blank" rel="noopener">http://wiki.jikexueyuan.com/project/java-vm/overwise.html</a></p>
-<p>java虚拟机承载着程序从源码到运行的全部工作。 </p>
-<p>Java虚拟机是可运行Java代码的<strong>假想计算机</strong>，有自己<strong>想象中的硬件</strong>，如<strong>处理器、堆栈、寄存器</strong>等，还具有相应的<strong>指令系统</strong>，可以执行 Java 的字节码程序。Java语言的一个非常重要的特点就是与<strong>平台的无关性</strong>。而使用Java虚拟机是实现这一特点的关键。</p>
-<p>Java语言使用模式Java虚拟机屏蔽了与具体平台相关的信息，使得Java语言编译程序只需生成在Java虚拟机上运行的目标代码（字节码），就可以在多种平台上不加修改地运行。Java虚拟机在<strong>执行字节码</strong>时，把字节码解释成具体平台上的机器指令执行。</p>
-<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/JVM%E5%88%9D%E5%AD%A6%E4%B9%A0/2.png" alt="jvm结构"></p>
-<p>这里简要说明java虚拟机概念，详细转到：</p>
-<p><a href="https://www.iteye.com/blog/hxraid-676235" target="_blank" rel="noopener">深入理解JVM</a></p>
-<hr>
-<h1 id="三、GC机制"><a href="#三、GC机制" class="headerlink" title="三、GC机制"></a>三、GC机制</h1><p>这里简要说明GC机制，详细转到：</p>
-<p><a href="http://www.baidu.com" target="_blank" rel="noopener">深入理解GC</a></p>
-<hr>
-<h1 id="四、类加载的机制的层次结构"><a href="#四、类加载的机制的层次结构" class="headerlink" title="四、类加载的机制的层次结构"></a>四、类加载的机制的层次结构</h1><p>Java程序执行分为以下步骤：</p>
-<ol>
-<li>我们编写的逻辑代码存储在”.java”文件下，文件经过Java编译器<strong>编译</strong>成拓展名为”.class”的字节码文件。</li>
-<li>“.class”文件中保存着Java代码经转换后的<strong>虚拟机指令</strong>，当需要使用某个类时，虚拟机将会加载它的”.class”文件，并创建对应的class对象，将class文件加载到虚拟机的内存，这个过程称为类加载</li>
-</ol>
-<p>这里我们了解一下类加载的过程，如下：</p>
-<p><img src="https://sakurawh-blog-1300370319.cos.ap-chengdu.myqcloud.com/JVM%E5%88%9D%E5%AD%A6%E4%B9%A0/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.png" alt="类加载过程"></p>
-<p>JVM将类加载过程分成<strong>加载，链接，初始化</strong>三个阶段，其中链接阶段又可分为<strong>验证，准备，解析</strong>三个阶段。</p>
-<ul>
-<li>加载：通过一个类的完全限定查找此类字节码文件，并利用字节码文件创建一个Class对象</li>
-</ul>
-<ul>
-<li><p>验证：目的在于确保Class文件的字节流中包含信息符合当前虚拟机要求，不会危害虚拟机自身安全。主要包括四种验证，文件格式验证，元数据验证，字节码验证，符号引用验证。</p>
-</li>
-<li><p>准备：为类变量(即static修饰的字段变量)分配内存并且设置该类变量的初始值即0，这里所设置的初始值通常情况下是数据类型默认的零值（如 0、0L、null、false 等）；这里不包含用final修饰的static，因为final在编译的时候就会分配了，注意这里不会为实例变量分配初始化，类变量会分配在方法区中，而实例变量是会随着对象一起分配到Java堆中。</p>
-</li>
-<li><p>解析：主要将常量池中的符号引用替换为直接引用的过程。符号引用就是一组符号来描述目标，可以是任何字面量，而直接引用就是直接指向目标的指针、相对偏移量或一个间接定位到目标的句柄。有类或接口的解析，字段解析，类方法解析，接口方法解析(这里涉及到字节码变量的引用)。</p>
-</li>
-<li><p>初始化：类加载最后阶段，若该类具有超类，则对其进行初始化，执行静态初始化器和静态初始化成员变量(如前面只初始化了默认值的static变量将会在这个阶段赋值，成员变量也将被初始化)。</p>
-</li>
-</ul>
-<p>参考：<a href="https://blog.csdn.net/u012585964/article/details/52011138" target="_blank" rel="noopener">https://blog.csdn.net/u012585964/article/details/52011138</a></p>
-<h1 id="五、反射的概念"><a href="#五、反射的概念" class="headerlink" title="五、反射的概念"></a>五、反射的概念</h1><p>在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。</p>
-<p>为何被称为动态机制：<strong>Java程序可以加载一个运行时才得知名称的class</strong>，获悉其完整构造（但不包括methods定义），并生成其对象实体、或对其fields设值、或唤起其methods。</p>
-<p>反射机制的功能：</p>
-<ul>
-<li>在运行时判断任意一个对象所属的类；（已知对象，得到类名）</li>
-<li>在运行时构造任意一个类的对象；（已知类名，得对象）</li>
-<li>在运行时判断任意一个类所具有的成员变量和方法；（已知类名，得变量及方法）</li>
-<li>在运行时调用任意一个对象的方法；（已知对象，得方法）</li>
-<li>生成动态代理。</li>
-</ul>
-<p>Java有个Object 类，是所有Java 类的继承根源，其内声明了数个应该在所有Java 类中被改写的方法：hashCode()、equals()、clone()、toString()、getClass()等。其中getClass()返回一个Class 对象。</p>
-<p>Class 类十分特殊。它和一般类一样继承自Object，其实体用以表达Java程序运行时的classes和interfaces，也用来表达enum、array、primitive Java types（boolean, byte, char, short, int, long, float, double）以及关键词void。当一个class被加载，或当加载器（class loader）的defineClass()被JVM调用，JVM 便自动产生一个Class 对象。</p>
-<p>总得来说，类是用来描述对象一般性质的抽象表达，那么Class对象就是用来描述一个类的抽象表达，可以形容类的状态、类型、返回值等。</p>
-<p>反射机制允许程序在正在执行的过程中，利用反射机制APIs取得任何已知名称的类的内部信息，包括：<strong>package、 type parameters、 superclass、 implemented interfaces、 inner classes、 outer classes、 fields、 constructors、 methods、 modifiers</strong>等，并可以在执行的过程中，<strong>动态生成instances、变更fields内容或唤起methods。</strong></p>
-<p>转到：<a href="https://blog.csdn.net/u012585964/article/details/52011138" target="_blank" rel="noopener">详解Class类</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/12/JVM初学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1566,7 +1650,7 @@ public int[] twoSum(int[] numbers, int target) {
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 SakuraWh
+    		&copy; 2021 SakuraWh
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1694,6 +1778,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
             
             <div class="clearfix"></div>
